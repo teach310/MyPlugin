@@ -7,6 +7,6 @@ public class SampleScene : MonoBehaviour
 {
     public void OnClick()
     {
-        Debug.Log("HelloPlugin.HelloWorld() = " + HelloPlugin.HelloWorld());
+        Debug.Log("SamplePlugin.HelloWorld() = " + SamplePlugin.HelloWorld());
     }
 }
