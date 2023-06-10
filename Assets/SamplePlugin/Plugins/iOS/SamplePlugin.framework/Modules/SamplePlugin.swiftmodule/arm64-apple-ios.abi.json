@@ -1,0 +1,55 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SamplePlugin"
+      },
+      {
+        "kind": "Function",
+        "name": "sample_plugin_helloworld",
+        "printedName": "sample_plugin_helloworld()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)sample_plugin_helloworld",
+        "mangledName": "$s12SamplePlugin24sample_plugin_helloworlds5Int32VyF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/SamplePlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 115,
+      "length": 14,
+      "value": "\"Hello World!\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/SamplePlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 142,
+      "length": 1,
+      "value": "3"
+    }
+  ]
+}
