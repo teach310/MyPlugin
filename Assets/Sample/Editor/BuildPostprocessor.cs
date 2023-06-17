@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -25,10 +27,32 @@ namespace PluginSampleEditor
         void ProcessForiOS(BuildReport report)
         {
             var buildOutputPath = report.summary.outputPath;
+            UpdateInfoPlist(buildOutputPath, InfoPlistData());
             UpdatePBXProject(buildOutputPath, project =>
             {
                 DisableBitcode(project);
             });
+        }
+
+        void UpdateInfoPlist(string buildOutputPath, Dictionary<string, string> plistData)
+        {
+            var plistPath = Path.Combine(buildOutputPath, "Info.plist");
+            var plist = new PlistDocument();
+            plist.ReadFromFile(plistPath);
+            var rootDict = plist.root;
+            foreach (var kvp in plistData)
+            {
+                rootDict.SetString(kvp.Key, kvp.Value);
+            }
+            plist.WriteToFile(plistPath);
+        }
+
+        Dictionary<string, string> InfoPlistData()
+        {
+            return new Dictionary<string, string>()
+            {
+                { "NSHealthShareUsageDescription", "read HealthKit Data" }
+            };
         }
 
         void UpdatePBXProject(string buildOutputPath, Action<PBXProject> action)
