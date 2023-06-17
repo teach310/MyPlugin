@@ -281,6 +281,12 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 #if defined(__OBJC__)
 
+SWIFT_EXTERN void sample_plugin_authorize(void (* _Nonnull completion)(BOOL));
+
+
+SWIFT_EXTERN void sample_plugin_get_steps_today(void (* _Nonnull completion)(int32_t));
+
+
 SWIFT_EXTERN int32_t sample_plugin_helloworld(void) SWIFT_WARN_UNUSED_RESULT;
 
 #endif

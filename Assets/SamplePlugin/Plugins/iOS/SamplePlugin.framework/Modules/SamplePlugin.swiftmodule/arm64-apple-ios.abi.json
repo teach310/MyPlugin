@@ -12,6 +12,135 @@
         "moduleName": "SamplePlugin"
       },
       {
+        "kind": "Import",
+        "name": "HealthKit",
+        "printedName": "HealthKit",
+        "declKind": "Import",
+        "moduleName": "SamplePlugin"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "HealthKitData",
+        "printedName": "HealthKitData",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HealthKitData",
+                "printedName": "SamplePlugin.HealthKitData",
+                "usr": "s:12SamplePlugin13HealthKitDataC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12SamplePlugin13HealthKitDataCACycfc",
+            "mangledName": "$s12SamplePlugin13HealthKitDataCACycfc",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "authorize",
+            "printedName": "authorize(completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin13HealthKitDataC9authorize10completionyySbc_tF",
+            "mangledName": "$s12SamplePlugin13HealthKitDataC9authorize10completionyySbc_tF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getStepsToday",
+            "printedName": "getStepsToday(completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Int) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin13HealthKitDataC13getStepsToday10completionyySic_tF",
+            "mangledName": "$s12SamplePlugin13HealthKitDataC13getStepsToday10completionyySic_tF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:12SamplePlugin13HealthKitDataC",
+        "mangledName": "$s12SamplePlugin13HealthKitDataC",
+        "moduleName": "SamplePlugin",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SamplePlugin"
+      },
+      {
         "kind": "Function",
         "name": "sample_plugin_helloworld",
         "printedName": "sample_plugin_helloworld()",
@@ -32,11 +161,159 @@
           "CDecl"
         ],
         "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "sample_plugin_authorize",
+        "printedName": "sample_plugin_authorize(_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "(Swift.Bool) -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ]
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)sample_plugin_authorize:",
+        "mangledName": "$s12SamplePlugin23sample_plugin_authorizeyyySbXCF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "sample_plugin_get_steps_today",
+        "printedName": "sample_plugin_get_steps_today(_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "(Swift.Int32) -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ]
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)sample_plugin_get_steps_today:",
+        "mangledName": "$s12SamplePlugin29sample_plugin_get_steps_todayyyys5Int32VXCF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
       }
     ],
     "json_format_version": 8
   },
   "ConstValues": [
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 445,
+      "length": 30,
+      "value": "\"is not health data available\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "BooleanLiteral",
+      "offset": 500,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 774,
+      "length": 67,
+      "value": "\"requestAuthorization failed. error: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 840,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "BooleanLiteral",
+      "offset": 870,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 1756,
+      "length": 70,
+      "value": "\"getStepsToday failed. error: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 1819,
+      "length": 5,
+      "value": "\"nil\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "StringLiteral",
+      "offset": 1825,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1859,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/HealthKitData.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2065,
+      "length": 1,
+      "value": "0"
+    },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/SamplePlugin.swift",
       "kind": "StringLiteral",
