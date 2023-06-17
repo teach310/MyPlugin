@@ -1,10 +1,23 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
-// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SamplePlugin
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SamplePlugin
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
+import HealthKit
 import Swift
 import _Concurrency
 import _StringProcessing
+public class HealthKitData {
+  public init()
+  public func authorize(completion: @escaping (Swift.Bool) -> Swift.Void)
+  public func getStepsToday(completion: @escaping (Swift.Int) -> Swift.Void)
+  @objc deinit
+}
 @_cdecl("sample_plugin_helloworld")
 public func sample_plugin_helloworld() -> Swift.Int32
+public typealias SamplePluginAuthorizeCompletion = @convention(c) (Swift.Bool) -> Swift.Void
+@_cdecl("sample_plugin_authorize")
+public func sample_plugin_authorize(_ completion: SamplePlugin.SamplePluginAuthorizeCompletion)
+public typealias SamplePluginGetStepsTodayCompletion = @convention(c) (Swift.Int32) -> Swift.Void
+@_cdecl("sample_plugin_get_steps_today")
+public func sample_plugin_get_steps_today(_ completion: SamplePlugin.SamplePluginGetStepsTodayCompletion)
