@@ -16,6 +16,20 @@ namespace Sample
 
         [DllImport(SAMPLE_PLUGIN, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int sample_plugin_helloworld();
+
+#if UNITY_IOS && !UNITY_EDITOR
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SamplePluginAuthorizeCompletion(bool requestSuccess);
+
+        [DllImport(SAMPLE_PLUGIN, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void sample_plugin_authorize(SamplePluginAuthorizeCompletion completion);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SamplePluginGetStepsTodayCompletion(int steps);
+
+        [DllImport(SAMPLE_PLUGIN, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void sample_plugin_get_steps_today(SamplePluginGetStepsTodayCompletion completion);
+#endif
     }
 #else
     internal static partial class NativeMethods
