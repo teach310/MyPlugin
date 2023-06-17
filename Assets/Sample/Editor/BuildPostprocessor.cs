@@ -30,6 +30,7 @@ namespace PluginSampleEditor
             UpdateInfoPlist(buildOutputPath, InfoPlistData());
             UpdatePBXProject(buildOutputPath, project =>
             {
+                AddEntitlementsFile(buildOutputPath, project);
                 DisableBitcode(project);
             });
         }
@@ -62,6 +63,22 @@ namespace PluginSampleEditor
             project.ReadFromFile(pbxProjectPath);
             action(project);
             project.WriteToFile(pbxProjectPath);
+        }
+
+        // PBXProjectクラスによってentitlementsに「com.apple.developer.healthkit.access」を追加することができなかったため、手動で作ったものをコピーする
+        void AddEntitlementsFile(string buildOutputPath, PBXProject pbxProject)
+        {
+            string baseEntitlementsFilePath = "BuildSettings/Unity-iPhone.entitlements";
+            string entitlementsFileRelativePath = "Unity-iPhone/Unity-iPhone.entitlements";
+            var entitlementsFilePath = Path.Combine(buildOutputPath, entitlementsFileRelativePath);
+            File.Copy(baseEntitlementsFilePath, entitlementsFilePath);
+            // Xcodeプロジェクトが読み込むentitlementsのパスを指定する
+            // 競合させないために PlayerSettings > Other Settings > Configuration > Automatically add capabilities はオフにする
+            pbxProject.AddBuildProperty(pbxProject.GetUnityMainTargetGuid(), "CODE_SIGN_ENTITLEMENTS", entitlementsFileRelativePath);
+
+            // Xcodeプロジェクトを開いたときにNavigation Areaにentitlementsファイルが表示されるようにする
+            string entitlementsFileProjectPath = Path.GetFileName(entitlementsFileRelativePath);
+            pbxProject.AddFile(entitlementsFileRelativePath, entitlementsFileProjectPath, PBXSourceTree.Source);
         }
 
         // ENABLE_BITCODE は非推奨のパラメータのためNOにする
