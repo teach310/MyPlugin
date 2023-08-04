@@ -8,7 +8,7 @@ namespace Sample
 #if UNITY_EDITOR_OSX || UNITY_IOS
     internal static partial class NativeMethods
     {
-#if UNITY_IOS
+#if UNITY_IOS && !UNITY_EDITOR
         const string SAMPLE_PLUGIN = "__Internal";
 #else
         const string SAMPLE_PLUGIN = "SamplePluginBundle";
