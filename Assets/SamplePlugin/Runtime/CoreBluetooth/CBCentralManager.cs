@@ -8,6 +8,8 @@ namespace CoreBluetooth
     public class CBCentralManager : SafeHandle
     {
         static readonly Dictionary<IntPtr, CBCentralManager> instanceMap = new Dictionary<IntPtr, CBCentralManager>();
+        // key: peripheralId, value: CBPeripheral
+        Dictionary<string, CBPeripheral> peripherals = new Dictionary<string, CBPeripheral>();
 
         public override bool IsInvalid => handle == IntPtr.Zero;
 
@@ -46,41 +48,60 @@ namespace CoreBluetooth
             var handle = NativeMethods.cb4u_central_manager_new();
             var instance = new CBCentralManager(handle);
             instance.centralManagerDelegate = centralManagerDelegate;
-            NativeMethods.cb4u_central_manager_register_handlers(
-                handle,
-                OnDidUpdateState,
-                OnDidDiscoverPeripheral
-            );
+            CentralEventHandler.Register(handle);
             return instance;
         }
 
-        [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidUpdateStateHandler))]
-        static void OnDidUpdateState(IntPtr centralPtr, CBManagerState state)
+        void OnDidUpdateState(CBManagerState state)
         {
-            if (!instanceMap.TryGetValue(centralPtr, out var instance))
-            {
-                UnityEngine.Debug.LogError("CBCentralManager instance not found.");
-                return;
-            }
-
-            instance.state = state;
-            instance.centralManagerDelegate?.CentralManagerDidUpdateState(instance);
+            this.state = state;
+            centralManagerDelegate?.CentralManagerDidUpdateState(this);
         }
 
-        [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidDiscoverPeripheralHandler))]
-        static void OnDidDiscoverPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
+        void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
-            if (!instanceMap.TryGetValue(centralPtr, out var instance))
-            {
-                UnityEngine.Debug.LogError("CBCentralManager instance not found.");
-                return;
-            }
-
             var peripheral = new CBPeripheral(
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
                 Marshal.PtrToStringUTF8(peripheralNamePtr)
             );
-            instance.centralManagerDelegate?.CentralManagerDidDiscoverPeripheral(instance, peripheral);
+
+            peripherals[peripheral.identifier] = peripheral;
+            centralManagerDelegate?.CentralManagerDidDiscoverPeripheral(this, peripheral);
+        }
+
+        static class CentralEventHandler
+        {
+            internal static void Register(IntPtr centralPtr)
+            {
+                NativeMethods.cb4u_central_manager_register_handlers(
+                    centralPtr,
+                    OnDidUpdateState,
+                    OnDidDiscoverPeripheral
+                );
+            }
+
+            static void CallInstanceMethod(IntPtr centralPtr, Action<CBCentralManager> action)
+            {
+                if (!instanceMap.TryGetValue(centralPtr, out var instance))
+                {
+                    UnityEngine.Debug.LogError("CBCentralManager instance not found.");
+                    return;
+                }
+
+                action(instance);
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidUpdateStateHandler))]
+            internal static void OnDidUpdateState(IntPtr centralPtr, CBManagerState state)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateState(state));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidDiscoverPeripheralHandler))]
+            internal static void OnDidDiscoverPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverPeripheral(peripheralIdPtr, peripheralNamePtr));
+            }
         }
     }
 }
