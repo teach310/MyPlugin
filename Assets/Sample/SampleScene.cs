@@ -12,6 +12,7 @@ public class SampleScene : MonoBehaviour
         string serviceUUID = "068c47b7-fc04-4d47-975a-7952be1a576f";
 
         CBCentralManager centralManager;
+        CBPeripheral peripheral;
 
         public void Init()
         {
@@ -20,19 +21,24 @@ public class SampleScene : MonoBehaviour
 
         public void Scan()
         {
-            if(centralManager.state != CBManagerState.poweredOn)
+            if (centralManager.state != CBManagerState.poweredOn)
             {
                 Debug.Log("Bluetooth is not powered on.");
                 return;
             }
 
-            if(centralManager.isScanning)
+            if (centralManager.isScanning)
             {
                 Debug.Log("Already scanning.");
                 return;
             }
             Debug.Log("Start scanning.");
-            centralManager.ScanForPeripherals(new string[]{serviceUUID});
+            centralManager.ScanForPeripherals(new string[] { serviceUUID });
+        }
+
+        public bool IsConnected()
+        {
+            return peripheral != null && peripheral.state == CBPeripheralState.connected;
         }
 
         public void CentralManagerDidUpdateState(CBCentralManager central)
@@ -43,6 +49,7 @@ public class SampleScene : MonoBehaviour
         public void CentralManagerDidDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral)
         {
             Debug.Log($"CentralManagerDidDiscoverPeripheral: {peripheral}");
+            this.peripheral = peripheral;
             central.StopScan();
             central.Connect(peripheral);
         }
@@ -78,8 +85,14 @@ public class SampleScene : MonoBehaviour
 
     public void OnClick()
     {
-        // Debug.Log("SamplePlugin.HelloWorld() = " + SamplePlugin.HelloWorld());
-        ble.Scan();
+        if (ble.IsConnected())
+        {
+            Debug.Log("Already connected.");
+        }
+        else
+        {
+            ble.Scan();
+        }
     }
 
     void OnDestroy()
