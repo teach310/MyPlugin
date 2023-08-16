@@ -31,7 +31,7 @@ public class SampleScene : MonoBehaviour
                 Debug.Log("Already scanning.");
                 return;
             }
-
+            Debug.Log("Start scanning.");
             centralManager.ScanForPeripherals(new string[]{serviceUUID});
         }
 
@@ -44,11 +44,27 @@ public class SampleScene : MonoBehaviour
         {
             Debug.Log($"CentralManagerDidDiscoverPeripheral: {peripheral}");
             central.StopScan();
+            central.Connect(peripheral);
         }
 
         public void Dispose()
         {
             centralManager.Dispose();
+        }
+
+        public void CentralManagerDidConnectPeripheral(CBCentralManager central, CBPeripheral peripheral)
+        {
+            Debug.Log($"CentralManagerDidConnectPeripheral: {peripheral}");
+        }
+
+        public void CentralManagerDidFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, CBError error)
+        {
+            Debug.Log($"CentralManagerDidFailToConnectPeripheral: {peripheral}");
+        }
+
+        public void CentralManagerDidDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, CBError error)
+        {
+            Debug.Log($"CentralManagerDidDisconnectPeripheral: {peripheral}");
         }
     }
 

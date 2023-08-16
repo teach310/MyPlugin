@@ -6,11 +6,9 @@ namespace CoreBluetooth
     public interface CBCentralManagerDelegate
     {
         void CentralManagerDidUpdateState(CBCentralManager central);
-        // void CentralManagerWillRestoreState(CBCentralManager central, NSDictionary dict);
-        // void CentralManagerDidDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral, NSDictionary advertisementData, NSNumber RSSI);
         void CentralManagerDidDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral);
-        // void CentralManagerDidConnectPeripheral(CBCentralManager central, CBPeripheral peripheral);
-        // void CentralManagerDidFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error);
-        // void CentralManagerDidDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error);
+        void CentralManagerDidConnectPeripheral(CBCentralManager central, CBPeripheral peripheral);
+        void CentralManagerDidFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, CBError error);
+        void CentralManagerDidDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, CBError error);
     }
 }
