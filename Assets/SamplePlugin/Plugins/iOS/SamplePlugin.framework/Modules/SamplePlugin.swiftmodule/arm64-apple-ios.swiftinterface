@@ -31,8 +31,12 @@ import _StringProcessing
   public var isScanning: Swift.Bool {
     get
   }
+  public func connect(_ peripheralId: Swift.String) -> Swift.Int32
   @objc public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
   @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didFailToConnect peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
   @objc deinit
 }
 @_cdecl("cb4u_central_manager_new")
@@ -41,13 +45,18 @@ public func cb4u_central_manager_new() -> Swift.UnsafeMutableRawPointer
 public func cb4u_central_manager_release(_ centralPtr: Swift.UnsafeRawPointer)
 public typealias CB4UCentralManagerDidUpdateStateHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.Int32) -> Swift.Void
 public typealias CB4UCentralManagerDidDiscoverPeripheralHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>) -> Swift.Void
+public typealias CB4UCentralManagerDidConnectPeripheralHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>) -> Swift.Void
+public typealias CB4UCentralManagerDidFailToConnectPeripheralHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.Int32) -> Swift.Void
+public typealias CB4UCentralManagerDidDisconnectPeripheralHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.Int32) -> Swift.Void
 @_cdecl("cb4u_central_manager_register_handlers")
-public func cb4u_central_manager_register_handlers(_ centralPtr: Swift.UnsafeRawPointer, _ didUpdateStateHandler: SamplePlugin.CB4UCentralManagerDidUpdateStateHandler, _ didDiscoverPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDiscoverPeripheralHandler)
+public func cb4u_central_manager_register_handlers(_ centralPtr: Swift.UnsafeRawPointer, _ didUpdateStateHandler: SamplePlugin.CB4UCentralManagerDidUpdateStateHandler, _ didDiscoverPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDiscoverPeripheralHandler, _ didConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidConnectPeripheralHandler, _ didFailToConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidFailToConnectPeripheralHandler, _ didDisconnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDisconnectPeripheralHandler)
 @_cdecl("cb4u_central_manager_scan_for_peripherals")
 public func cb4u_central_manager_scan_for_peripherals(_ centralPtr: Swift.UnsafeRawPointer, _ serviceUUIDs: Swift.UnsafePointer<Swift.UnsafePointer<Swift.CChar>?>, _ serviceUUIDsCount: Swift.Int32)
 @_cdecl("cb4u_central_manager_stop_scan")
 public func cb4u_central_manager_stop_scan(_ centralPtr: Swift.UnsafeRawPointer)
 @_cdecl("cb4u_central_manager_is_scanning")
 public func cb4u_central_manager_is_scanning(_ centralPtr: Swift.UnsafeRawPointer) -> Swift.Bool
+@_cdecl("cb4u_central_manager_connect_peripheral")
+public func cb4u_central_manager_connect_peripheral(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>) -> Swift.Int32
 @_cdecl("sample_plugin_helloworld")
 public func sample_plugin_helloworld() -> Swift.Int32

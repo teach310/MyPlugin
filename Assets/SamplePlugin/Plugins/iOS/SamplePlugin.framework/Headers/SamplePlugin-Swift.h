@@ -311,7 +311,13 @@ SWIFT_CLASS("_TtC12SamplePlugin18CB4UCentralManager")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)centralManagerDidUpdateState:(CBCentralManager * _Nonnull)central;
 - (void)centralManager:(CBCentralManager * _Nonnull)central didDiscoverPeripheral:(CBPeripheral * _Nonnull)peripheral advertisementData:(NSDictionary<NSString *, id> * _Nonnull)advertisementData RSSI:(NSNumber * _Nonnull)RSSI;
+- (void)centralManager:(CBCentralManager * _Nonnull)central didConnectPeripheral:(CBPeripheral * _Nonnull)peripheral;
+- (void)centralManager:(CBCentralManager * _Nonnull)central didFailToConnectPeripheral:(CBPeripheral * _Nonnull)peripheral error:(NSError * _Nullable)error;
+- (void)centralManager:(CBCentralManager * _Nonnull)central didDisconnectPeripheral:(CBPeripheral * _Nonnull)peripheral error:(NSError * _Nullable)error;
 @end
+
+
+SWIFT_EXTERN int32_t cb4u_central_manager_connect_peripheral(void const * _Nonnull centralPtr, char const * _Nonnull peripheralId) SWIFT_WARN_UNUSED_RESULT;
 
 
 SWIFT_EXTERN BOOL cb4u_central_manager_is_scanning(void const * _Nonnull centralPtr) SWIFT_WARN_UNUSED_RESULT;
@@ -320,7 +326,7 @@ SWIFT_EXTERN BOOL cb4u_central_manager_is_scanning(void const * _Nonnull central
 SWIFT_EXTERN void * _Nonnull cb4u_central_manager_new(void) SWIFT_WARN_UNUSED_RESULT;
 
 
-SWIFT_EXTERN void cb4u_central_manager_register_handlers(void const * _Nonnull centralPtr, void (* _Nonnull didUpdateStateHandler)(void const * _Nonnull, int32_t), void (* _Nonnull didDiscoverPeripheralHandler)(void const * _Nonnull, char const * _Nonnull, char const * _Nonnull));
+SWIFT_EXTERN void cb4u_central_manager_register_handlers(void const * _Nonnull centralPtr, void (* _Nonnull didUpdateStateHandler)(void const * _Nonnull, int32_t), void (* _Nonnull didDiscoverPeripheralHandler)(void const * _Nonnull, char const * _Nonnull, char const * _Nonnull), void (* _Nonnull didConnectPeripheralHandler)(void const * _Nonnull, char const * _Nonnull), void (* _Nonnull didFailToConnectPeripheralHandler)(void const * _Nonnull, char const * _Nonnull, int32_t), void (* _Nonnull didDisconnectPeripheralHandler)(void const * _Nonnull, char const * _Nonnull, int32_t));
 
 
 SWIFT_EXTERN void cb4u_central_manager_release(void const * _Nonnull centralPtr);
