@@ -23,6 +23,9 @@ namespace CoreBluetooth
         internal delegate void CB4UCentralManagerDidFailToConnectPeripheralHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode);
         internal delegate void CB4UCentralManagerDidDisconnectPeripheralHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode);
 
+        // NOTE: use comma separated service ids to avoid to use array of string
+        internal delegate void CB4UPeripheralDidDiscoverServicesHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode);
+
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_register_handlers(
             IntPtr centralPtr,
@@ -30,7 +33,8 @@ namespace CoreBluetooth
             CB4UCentralManagerDidDiscoverPeripheralHandler didDiscoverPeripheralHandler,
             CB4UCentralManagerDidConnectPeripheralHandler didConnectPeripheralHandler,
             CB4UCentralManagerDidFailToConnectPeripheralHandler didFailToConnectPeripheralHandler,
-            CB4UCentralManagerDidDisconnectPeripheralHandler didDisconnectPeripheralHandler
+            CB4UCentralManagerDidDisconnectPeripheralHandler didDisconnectPeripheralHandler,
+            CB4UPeripheralDidDiscoverServicesHandler didDiscoverServicesHandler
         );
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -49,5 +53,8 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_central_manager_connect_peripheral(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int cb4u_peripheral_discover_services(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 3)] string[] serviceUUIDs, int serviceUUIDsCount);
     }
 }

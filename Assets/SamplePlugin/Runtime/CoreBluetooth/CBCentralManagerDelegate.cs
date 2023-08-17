@@ -3,6 +3,7 @@ namespace CoreBluetooth
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate
     // Original CBCentralManagerDelegate has only centralManagerDidUpdateState as required method.
     // However, in this interface, all methods that are not used should be empty methods, so all methods are required.
+    // FIXME: あってもとくに嬉しいことなかったため関数名にCentralManagerつけなくて良さそう
     public interface CBCentralManagerDelegate
     {
         void CentralManagerDidUpdateState(CBCentralManager central);

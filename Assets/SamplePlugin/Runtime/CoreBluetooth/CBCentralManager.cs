@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 namespace CoreBluetooth
 {
@@ -57,11 +58,29 @@ namespace CoreBluetooth
             }
 
             peripheral.SetState(CBPeripheralState.connecting);
-            NativeMethods.cb4u_central_manager_connect_peripheral(handle, peripheral.identifier);
+            var result = NativeMethods.cb4u_central_manager_connect_peripheral(handle, peripheral.identifier);
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute connect.");
+            }
         }
 
         #endregion
 
+        public void DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
+        {
+            int result = NativeMethods.cb4u_peripheral_discover_services(
+                handle,
+                peripheral.identifier,
+                serviceUUIDs,
+                serviceUUIDs.Length
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute discover services.");
+            }
+        }
 
         // NOTE: options is not implemented yet.
         // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1519001-init
@@ -83,6 +102,7 @@ namespace CoreBluetooth
         void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
             var peripheral = new CBPeripheral(
+                this,
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
                 Marshal.PtrToStringUTF8(peripheralNamePtr)
             );
@@ -124,6 +144,28 @@ namespace CoreBluetooth
             centralManagerDelegate?.CentralManagerDidDisconnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
+        void OnDidDiscoverServices(IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            string commaSeparatedServiceIds = Marshal.PtrToStringUTF8(commaSeparatedServiceIdsPtr);
+            if (string.IsNullOrEmpty(commaSeparatedServiceIds))
+            {
+                UnityEngine.Debug.LogError("OnDidDiscoverService is called with empty serviceIds.");
+                return;
+            }
+
+            var serviceIds = Marshal.PtrToStringUTF8(commaSeparatedServiceIdsPtr).Split(',').ToList();
+            // NOTE: get service info here if needed.
+            var services = serviceIds.Select(serviceId => new CBService(serviceId, peripheral)).ToArray();
+            peripheral.OnDidDiscoverServices(services, CBError.CreateOrNullFromCode(errorCode));
+
+        }
+
         static class CentralEventHandler
         {
             internal static void Register(IntPtr centralPtr)
@@ -134,7 +176,8 @@ namespace CoreBluetooth
                     OnDidDiscoverPeripheral,
                     OnDidConnectPeripheral,
                     OnDidFailToConnectPeripheral,
-                    OnDidDisconnectPeripheral
+                    OnDidDisconnectPeripheral,
+                    OnDidDiscoverServices
                 );
             }
 
@@ -177,6 +220,12 @@ namespace CoreBluetooth
             internal static void OnDidDisconnectPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidDisconnectPeripheral(peripheralIdPtr, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidDiscoverServicesHandler))]
+            internal static void OnDidDiscoverServices(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverServices(peripheralIdPtr, commaSeparatedServiceIdsPtr, errorCode));
             }
         }
     }

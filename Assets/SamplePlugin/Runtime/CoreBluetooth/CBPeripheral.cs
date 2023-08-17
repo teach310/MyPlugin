@@ -1,17 +1,26 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbperipheral
     public class CBPeripheral
     {
-        public string identifier { get; private set; }
-        public string name { get; private set; }
+        CBCentralManager centralManager;
+        public string identifier { get; }
+        public string name { get; }
         public CBPeripheralState state { get; private set; }
+        public CBPeripheralDelegate peripheralDelegate { get; set; }
+        List<CBService> _services = new List<CBService>();
+        public ReadOnlyCollection<CBService> services { get; }
 
-        public CBPeripheral(string id, string name, CBPeripheralState state = CBPeripheralState.disconnected)
+        public CBPeripheral(CBCentralManager centralManager, string id, string name, CBPeripheralState state = CBPeripheralState.disconnected)
         {
+            this.centralManager = centralManager;
             this.identifier = id;
             this.name = name;
             this.state = state;
+            this.services = _services.AsReadOnly();
         }
 
         // TODO: output mtu
@@ -20,9 +29,14 @@ namespace CoreBluetooth
             return $"CBPeripheral: identifier = {identifier}, name = {name}, state = {state}";
         }
 
-        internal void SetState(CBPeripheralState state)
+        internal void SetState(CBPeripheralState state) => this.state = state;
+        public void DiscoverServices(string[] serviceUUIDs) => centralManager.DiscoverServices(this, serviceUUIDs);
+
+        internal void OnDidDiscoverServices(CBService[] services, CBError error)
         {
-            this.state = state;
+            _services.Clear();
+            _services.AddRange(services);
+            peripheralDelegate?.DidDiscoverServices(this, error);
         }
     }
 
