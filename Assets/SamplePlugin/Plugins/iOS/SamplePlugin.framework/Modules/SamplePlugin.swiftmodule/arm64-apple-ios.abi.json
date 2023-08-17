@@ -2595,6 +2595,278 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "didDiscoverServicesHandler",
+            "printedName": "didDiscoverServicesHandler",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafeRawPointer",
+                            "printedName": "Swift.UnsafeRawPointer",
+                            "usr": "s:SV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafePointer",
+                            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int8",
+                                "printedName": "Swift.Int8",
+                                "usr": "s:s4Int8V"
+                              }
+                            ],
+                            "usr": "s:SP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafePointer",
+                            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int8",
+                                "printedName": "Swift.Int8",
+                                "usr": "s:s4Int8V"
+                              }
+                            ],
+                            "usr": "s:SP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int32",
+                            "printedName": "Swift.Int32",
+                            "usr": "s:s5Int32V"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvp",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvs",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvs",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvM",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC26didDiscoverServicesHandlerySV_SPys4Int8VGAGs5Int32VtXCSgvM",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -2772,6 +3044,56 @@
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "discoverServices",
+            "printedName": "discoverServices(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[CoreBluetooth.CBUUID]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[CoreBluetooth.CBUUID]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CBUUID",
+                        "printedName": "CoreBluetooth.CBUUID",
+                        "usr": "c:objc(cs)CBUUID"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC16discoverServicesys5Int32VSS_SaySo6CBUUIDCGSgtF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC16discoverServicesys5Int32VSS_SaySo6CBUUIDCGSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -3000,6 +3322,50 @@
           },
           {
             "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didDiscoverServices:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didDiscoverServices:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_19didDiscoverServicesySo12CBPeripheralC_s5Error_pSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "peripheral:didDiscoverServices:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "errorToCode",
             "printedName": "errorToCode(_:)",
             "children": [
@@ -3168,7 +3534,7 @@
       {
         "kind": "Function",
         "name": "cb4u_central_manager_register_handlers",
-        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:)",
+        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:_:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -3393,11 +3759,70 @@
                 ]
               }
             ]
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeRawPointer",
+                    "printedName": "Swift.UnsafeRawPointer",
+                    "usr": "s:SV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafePointer",
+                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int8",
+                        "printedName": "Swift.Int8",
+                        "usr": "s:s4Int8V"
+                      }
+                    ],
+                    "usr": "s:SP"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafePointer",
+                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int8",
+                        "printedName": "Swift.Int8",
+                        "usr": "s:s4Int8V"
+                      }
+                    ],
+                    "usr": "s:SP"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)cb4u_central_manager_register_handlers::::::",
-        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCtF",
+        "usr": "c:(cm)cb4u_central_manager_register_handlers:::::::",
+        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCySV_A2gDtXCtF",
         "moduleName": "SamplePlugin",
         "declAttributes": [
           "AccessControl",
@@ -3558,6 +3983,84 @@
         "declKind": "Func",
         "usr": "c:(cm)cb4u_central_manager_connect_peripheral::",
         "mangledName": "$s12SamplePlugin39cb4u_central_manager_connect_peripheralys5Int32VSV_SPys4Int8VGtF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "cb4u_peripheral_discover_services",
+        "printedName": "cb4u_peripheral_discover_services(_:_:_:_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafeRawPointer",
+            "printedName": "Swift.UnsafeRawPointer",
+            "usr": "s:SV"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.UnsafePointer<Swift.Int8>?>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafePointer",
+                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int8",
+                        "printedName": "Swift.Int8",
+                        "usr": "s:s4Int8V"
+                      }
+                    ],
+                    "usr": "s:SP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "usr": "s:SP"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)cb4u_peripheral_discover_services::::",
+        "mangledName": "$s12SamplePlugin33cb4u_peripheral_discover_servicesys5Int32VSV_SPys4Int8VGSPyAGSgGADtF",
         "moduleName": "SamplePlugin",
         "declAttributes": [
           "AccessControl",
@@ -4007,49 +4510,84 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "Dictionary",
-      "offset": 291,
+      "offset": 313,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1266,
+      "offset": 1367,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1761,
+      "offset": 1862,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1832,
+      "offset": 1933,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2120,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2198,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 2396,
+      "offset": 2797,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "StringLiteral",
+      "offset": 4233,
+      "length": 3,
+      "value": "\",\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "StringLiteral",
+      "offset": 4241,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3701,
+      "offset": 4720,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 2523,
+      "offset": 2832,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4306,
       "length": 1,
       "value": "0"
     },
