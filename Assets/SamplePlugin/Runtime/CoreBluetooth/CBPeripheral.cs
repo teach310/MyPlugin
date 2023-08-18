@@ -46,6 +46,13 @@ namespace CoreBluetooth
             service.UpdateCharacteristics(characteristics);
             peripheralDelegate?.DidDiscoverCharacteristics(this, service, error);
         }
+
+        public void ReadValue(CBCharacteristic characteristic) => centralManager.ReadValueForCharacteristic(this, characteristic);
+
+        internal void OnDidUpdateValueForCharacteristic(CBCharacteristic characteristic, CBError error)
+        {
+            peripheralDelegate?.DidUpdateValue(this, characteristic, error);
+        }
     }
 
     // https://developer.apple.com/documentation/corebluetooth/cbperipheralstate

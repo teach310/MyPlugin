@@ -98,6 +98,21 @@ namespace CoreBluetooth
             }
         }
 
+        internal void ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic)
+        {
+            int result = NativeMethods.cb4u_peripheral_read_value_for_characteristic(
+                handle,
+                peripheral.identifier,
+                characteristic.service.identifier,
+                characteristic.identifier
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute read value for characteristic.");
+            }
+        }
+
         // NOTE: options is not implemented yet.
         // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1519001-init
         public static CBCentralManager Create(CBCentralManagerDelegate centralManagerDelegate = null)
@@ -211,6 +226,36 @@ namespace CoreBluetooth
             peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
         }
 
+        void OnDidUpdateValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            var serviceId = Marshal.PtrToStringUTF8(serviceIdPtr);
+            var characteristicId = Marshal.PtrToStringUTF8(characteristicIdPtr);
+            CBCharacteristic characteristic = null;
+
+            if (string.IsNullOrEmpty(serviceId))
+            {
+                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.identifier == characteristicId);
+            } else {
+                var service = peripheral.services.FirstOrDefault(s => s.identifier == serviceId);
+                if (service == null)
+                {
+                    UnityEngine.Debug.LogError("Service not found.");
+                    return;
+                }
+                characteristic = service.characteristics.FirstOrDefault(c => c.identifier == characteristicId);
+            }
+            var valueBytes = new byte[valueLength];
+            Marshal.Copy(valuePtr, valueBytes, 0, valueLength);
+            characteristic.SetValue(valueBytes);
+            peripheral.OnDidUpdateValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
+        }
+
         static class CentralEventHandler
         {
             internal static void Register(IntPtr centralPtr)
@@ -223,7 +268,8 @@ namespace CoreBluetooth
                     OnDidFailToConnectPeripheral,
                     OnDidDisconnectPeripheral,
                     OnDidDiscoverServices,
-                    OnDidDiscoverCharacteristics
+                    OnDidDiscoverCharacteristics,
+                    OnDidUpdateValueForCharacteristic
                 );
             }
 
@@ -278,6 +324,12 @@ namespace CoreBluetooth
             internal static void OnDidDiscoverCharacteristics(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverCharacteristics(peripheralIdPtr, serviceIdPtr, commaSeparatedCharacteristicIdsPtr, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateValueForCharacteristicHandler))]
+            internal static void OnDidUpdateValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, valuePtr, valueLength, errorCode));
             }
         }
     }

@@ -4,6 +4,7 @@ using Sample;
 using UnityEngine;
 using CoreBluetooth;
 using System;
+using System.Text;
 
 public class SampleScene : MonoBehaviour
 {
@@ -94,7 +95,22 @@ public class SampleScene : MonoBehaviour
             foreach (var characteristic in service.characteristics)
             {
                 Debug.Log($"Characteristic: {characteristic}");
+                // TODO: propertiesの確認
+                peripheral.ReadValue(characteristic);
             }
+        }
+
+        public void DidUpdateValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error)
+        {
+            Debug.Log($"DidUpdateValue: {peripheral}");
+            if (error != null)
+            {
+                Debug.Log($"Error: {error}");
+                return;
+            }
+
+            var str = Encoding.UTF8.GetString(characteristic.value);
+            Debug.Log($"Data: {str}");
         }
     }
 

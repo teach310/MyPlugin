@@ -11,7 +11,8 @@ namespace CoreBluetooth
         public CBService service { get; }
 
         // TODO: CBCharacteristicProperties properties { get; } キャッシュはしない
-        // TODO: value プロパティはキャッシュする
+        public byte[] value { get; private set; }
+        internal void SetValue(byte[] value) => this.value = value;
 
         public CBCharacteristic(string identifier, CBService service)
         {
