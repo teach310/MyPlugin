@@ -38,6 +38,14 @@ namespace CoreBluetooth
             _services.AddRange(services);
             peripheralDelegate?.DidDiscoverServices(this, error);
         }
+
+        public void DiscoverCharacteristics(string[] characteristicUUIDs, CBService service) => centralManager.DiscoverCharacteristics(this, service, characteristicUUIDs);
+
+        internal void OnDidDiscoverCharacteristics(CBCharacteristic[] characteristics, CBService service, CBError error)
+        {
+            service.UpdateCharacteristics(characteristics);
+            peripheralDelegate?.DidDiscoverCharacteristics(this, service, error);
+        }
     }
 
     // https://developer.apple.com/documentation/corebluetooth/cbperipheralstate

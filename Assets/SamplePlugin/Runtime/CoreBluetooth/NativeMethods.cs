@@ -25,6 +25,7 @@ namespace CoreBluetooth
 
         // NOTE: use comma separated service ids to avoid to use array of string
         internal delegate void CB4UPeripheralDidDiscoverServicesHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode);
+        internal delegate void CB4UPeripheralDidDiscoverCharacteristicsHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_register_handlers(
@@ -34,7 +35,8 @@ namespace CoreBluetooth
             CB4UCentralManagerDidConnectPeripheralHandler didConnectPeripheralHandler,
             CB4UCentralManagerDidFailToConnectPeripheralHandler didFailToConnectPeripheralHandler,
             CB4UCentralManagerDidDisconnectPeripheralHandler didDisconnectPeripheralHandler,
-            CB4UPeripheralDidDiscoverServicesHandler didDiscoverServicesHandler
+            CB4UPeripheralDidDiscoverServicesHandler didDiscoverServicesHandler,
+            CB4UPeripheralDidDiscoverCharacteristicsHandler didDiscoverCharacteristicsHandler
         );
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -56,5 +58,8 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_peripheral_discover_services(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 3)] string[] serviceUUIDs, int serviceUUIDsCount);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int cb4u_peripheral_discover_characteristics(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] characteristicUUIDs, int characteristicUUIDsCount);
     }
 }

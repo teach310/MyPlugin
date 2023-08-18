@@ -10,7 +10,7 @@ public class SampleScene : MonoBehaviour
     public class BLESample : CBCentralManagerDelegate, CBPeripheralDelegate, IDisposable
     {
         string serviceUUID = "068c47b7-fc04-4d47-975a-7952be1a576f";
-        // string characteristicUUID = "e3737b3f-a08d-405b-b32d-35a8f6c64c5d";
+        string characteristicUUID = "e3737b3f-a08d-405b-b32d-35a8f6c64c5d";
 
         CBCentralManager centralManager;
         CBPeripheral peripheral;
@@ -84,7 +84,16 @@ public class SampleScene : MonoBehaviour
             foreach (var service in peripheral.services)
             {
                 Debug.Log($"Service: {service}");
-                // peripheral.DiscoverCharacteristics(new string[] { }, service);
+                peripheral.DiscoverCharacteristics(new string[] { characteristicUUID }, service);
+            }
+        }
+
+        public void DidDiscoverCharacteristics(CBPeripheral peripheral, CBService service, CBError error)
+        {
+            Debug.Log($"DidDiscoverCharacteristics: {peripheral}");
+            foreach (var characteristic in service.characteristics)
+            {
+                Debug.Log($"Characteristic: {characteristic}");
             }
         }
     }

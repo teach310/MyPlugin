@@ -67,7 +67,7 @@ namespace CoreBluetooth
 
         #endregion
 
-        public void DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
+        internal void DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
         {
             int result = NativeMethods.cb4u_peripheral_discover_services(
                 handle,
@@ -79,6 +79,22 @@ namespace CoreBluetooth
             if (result < 0)
             {
                 UnityEngine.Debug.LogError("Failed to execute discover services.");
+            }
+        }
+
+        internal void DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs)
+        {
+            int result = NativeMethods.cb4u_peripheral_discover_characteristics(
+                handle,
+                peripheral.identifier,
+                service.identifier,
+                characteristicUUIDs,
+                characteristicUUIDs.Length
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute discover characteristics.");
             }
         }
 
@@ -166,6 +182,35 @@ namespace CoreBluetooth
 
         }
 
+        void OnDidDiscoverCharacteristics(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            string commaSeparatedCharacteristicIds = Marshal.PtrToStringUTF8(commaSeparatedCharacteristicIdsPtr);
+            if (string.IsNullOrEmpty(commaSeparatedCharacteristicIds))
+            {
+                UnityEngine.Debug.LogError("OnDidDiscoverCharacteristics is called with empty characteristicIds.");
+                return;
+            }
+
+            var characteristicIds = Marshal.PtrToStringUTF8(commaSeparatedCharacteristicIdsPtr).Split(',').ToList();
+
+            var service = peripheral.services.FirstOrDefault(s => s.identifier == Marshal.PtrToStringUTF8(serviceIdPtr));
+            if (service == null)
+            {
+                UnityEngine.Debug.LogError("Service not found.");
+                return;
+            }
+
+            // NOTE: get characteristic info here if needed.
+            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service)).ToArray();
+            peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
+        }
+
         static class CentralEventHandler
         {
             internal static void Register(IntPtr centralPtr)
@@ -177,7 +222,8 @@ namespace CoreBluetooth
                     OnDidConnectPeripheral,
                     OnDidFailToConnectPeripheral,
                     OnDidDisconnectPeripheral,
-                    OnDidDiscoverServices
+                    OnDidDiscoverServices,
+                    OnDidDiscoverCharacteristics
                 );
             }
 
@@ -226,6 +272,12 @@ namespace CoreBluetooth
             internal static void OnDidDiscoverServices(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverServices(peripheralIdPtr, commaSeparatedServiceIdsPtr, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidDiscoverCharacteristicsHandler))]
+            internal static void OnDidDiscoverCharacteristics(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverCharacteristics(peripheralIdPtr, serviceIdPtr, commaSeparatedCharacteristicIdsPtr, errorCode));
             }
         }
     }
