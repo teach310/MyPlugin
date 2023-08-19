@@ -1,28 +1,36 @@
 namespace CoreBluetooth
 {
+    internal interface ICharacteristicNativeMethods
+    {
+        CBCharacteristicProperties GetCharacteristicProperties(CBCharacteristic characteristic);
+    }
+
     // https://developer.apple.com/documentation/corebluetooth/cbcharacteristic
     public class CBCharacteristic
     {
-        public string identifier { get; }
+        public string uuid { get; }
 
         /// <summary>
         /// The service to which this characteristic belongs.
         /// </summary>
         public CBService service { get; }
+        ICharacteristicNativeMethods nativeMethods;
 
-        // TODO: CBCharacteristicProperties properties { get; } キャッシュはしない
         public byte[] value { get; private set; }
         internal void SetValue(byte[] value) => this.value = value;
 
-        public CBCharacteristic(string identifier, CBService service)
+        internal CBCharacteristic(string uuid, CBService service, ICharacteristicNativeMethods nativeMethods)
         {
-            this.identifier = identifier;
+            this.uuid = uuid;
             this.service = service;
+            this.nativeMethods = nativeMethods;
         }
 
         public override string ToString()
         {
-            return $"CBCharacteristic: identifier={identifier}";
+            return $"CBCharacteristic: UUID={uuid}, properties={properties}";
         }
+
+        public CBCharacteristicProperties properties => nativeMethods.GetCharacteristicProperties(this);
     }
 }

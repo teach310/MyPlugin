@@ -95,8 +95,10 @@ public class SampleScene : MonoBehaviour
             foreach (var characteristic in service.characteristics)
             {
                 Debug.Log($"Characteristic: {characteristic}");
-                // TODO: propertiesの確認
-                peripheral.ReadValue(characteristic);
+                if (characteristic.properties.HasFlag(CBCharacteristicProperties.Read))
+                {
+                    peripheral.ReadValue(characteristic);
+                }
             }
         }
 

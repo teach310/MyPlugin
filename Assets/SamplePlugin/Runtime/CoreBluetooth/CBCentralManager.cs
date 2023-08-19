@@ -6,7 +6,7 @@ using System.Linq;
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager
-    public class CBCentralManager : SafeHandle
+    public class CBCentralManager : SafeHandle, ICharacteristicNativeMethods
     {
         static readonly Dictionary<IntPtr, CBCentralManager> instanceMap = new Dictionary<IntPtr, CBCentralManager>();
         // key: peripheralId, value: CBPeripheral
@@ -87,7 +87,7 @@ namespace CoreBluetooth
             int result = NativeMethods.cb4u_peripheral_discover_characteristics(
                 handle,
                 peripheral.identifier,
-                service.identifier,
+                service.uuid,
                 characteristicUUIDs,
                 characteristicUUIDs.Length
             );
@@ -103,14 +103,30 @@ namespace CoreBluetooth
             int result = NativeMethods.cb4u_peripheral_read_value_for_characteristic(
                 handle,
                 peripheral.identifier,
-                characteristic.service.identifier,
-                characteristic.identifier
+                characteristic.service.uuid,
+                characteristic.uuid
             );
 
             if (result < 0)
             {
                 UnityEngine.Debug.LogError("Failed to execute read value for characteristic.");
             }
+        }
+
+        CBCharacteristicProperties ICharacteristicNativeMethods.GetCharacteristicProperties(CBCharacteristic characteristic)
+        {
+            var propertiesInt = NativeMethods.cb4u_central_manager_characteristic_properties(
+                handle,
+                characteristic.service.peripheral.identifier,
+                characteristic.service.uuid,
+                characteristic.uuid
+            );
+
+            if (propertiesInt < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute get characteristic properties.");
+            }
+            return (CBCharacteristicProperties)propertiesInt;
         }
 
         // NOTE: options is not implemented yet.
@@ -214,7 +230,7 @@ namespace CoreBluetooth
 
             var characteristicIds = Marshal.PtrToStringUTF8(commaSeparatedCharacteristicIdsPtr).Split(',').ToList();
 
-            var service = peripheral.services.FirstOrDefault(s => s.identifier == Marshal.PtrToStringUTF8(serviceIdPtr));
+            var service = peripheral.services.FirstOrDefault(s => s.uuid == Marshal.PtrToStringUTF8(serviceIdPtr));
             if (service == null)
             {
                 UnityEngine.Debug.LogError("Service not found.");
@@ -222,7 +238,7 @@ namespace CoreBluetooth
             }
 
             // NOTE: get characteristic info here if needed.
-            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service)).ToArray();
+            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service, this)).ToArray();
             peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
         }
 
@@ -240,15 +256,15 @@ namespace CoreBluetooth
 
             if (string.IsNullOrEmpty(serviceId))
             {
-                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.identifier == characteristicId);
+                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.uuid == characteristicId);
             } else {
-                var service = peripheral.services.FirstOrDefault(s => s.identifier == serviceId);
+                var service = peripheral.services.FirstOrDefault(s => s.uuid == serviceId);
                 if (service == null)
                 {
                     UnityEngine.Debug.LogError("Service not found.");
                     return;
                 }
-                characteristic = service.characteristics.FirstOrDefault(c => c.identifier == characteristicId);
+                characteristic = service.characteristics.FirstOrDefault(c => c.uuid == characteristicId);
             }
             var valueBytes = new byte[valueLength];
             Marshal.Copy(valuePtr, valueBytes, 0, valueLength);

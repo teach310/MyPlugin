@@ -5,7 +5,7 @@ namespace CoreBluetooth
 {
     public class CBService
     {
-        public string identifier { get; }
+        public string uuid { get; }
 
         /// <summary>
         /// The peripheral to which this service belongs.
@@ -15,16 +15,16 @@ namespace CoreBluetooth
         List<CBCharacteristic> _characteristics = new List<CBCharacteristic>();
         public ReadOnlyCollection<CBCharacteristic> characteristics { get; }
 
-        public CBService(string identifier, CBPeripheral peripheral)
+        public CBService(string uuid, CBPeripheral peripheral)
         {
-            this.identifier = identifier;
+            this.uuid = uuid;
             this.peripheral = peripheral;
             characteristics = _characteristics.AsReadOnly();
         }
 
         public override string ToString()
         {
-            return $"CBService: identifier={identifier}";
+            return $"CBService: uuid={uuid}";
         }
 
         internal void UpdateCharacteristics(CBCharacteristic[] characteristics)
