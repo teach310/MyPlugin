@@ -320,6 +320,9 @@ SWIFT_CLASS("_TtC12SamplePlugin18CB4UCentralManager")
 @end
 
 
+SWIFT_EXTERN int32_t cb4u_central_manager_characteristic_properties(void const * _Nonnull centralPtr, char const * _Nonnull peripheralId, char const * _Nonnull serviceId, char const * _Nonnull characteristicId) SWIFT_WARN_UNUSED_RESULT;
+
+
 SWIFT_EXTERN int32_t cb4u_central_manager_connect_peripheral(void const * _Nonnull centralPtr, char const * _Nonnull peripheralId) SWIFT_WARN_UNUSED_RESULT;
 
 

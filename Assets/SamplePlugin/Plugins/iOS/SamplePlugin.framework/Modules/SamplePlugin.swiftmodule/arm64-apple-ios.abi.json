@@ -842,6 +842,27 @@
           },
           {
             "kind": "Function",
+            "name": "printAllCharacteristicPropertiesRawValue",
+            "printedName": "printAllCharacteristicPropertiesRawValue()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin9BLESampleC40printAllCharacteristicPropertiesRawValueyyF",
+            "mangledName": "$s12SamplePlugin9BLESampleC40printAllCharacteristicPropertiesRawValueyyF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "scan",
             "printedName": "scan()",
             "children": [
@@ -3737,6 +3758,46 @@
           },
           {
             "kind": "Function",
+            "name": "characteristicProperties",
+            "printedName": "characteristicProperties(_:_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_S2StF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_S2StF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "discoverServices",
             "printedName": "discoverServices(_:_:)",
             "children": [
@@ -5040,6 +5101,76 @@
       },
       {
         "kind": "Function",
+        "name": "cb4u_central_manager_characteristic_properties",
+        "printedName": "cb4u_central_manager_characteristic_properties(_:_:_:_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafeRawPointer",
+            "printedName": "Swift.UnsafeRawPointer",
+            "usr": "s:SV"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)cb4u_central_manager_characteristic_properties::::",
+        "mangledName": "$s12SamplePlugin46cb4u_central_manager_characteristic_propertiesys5Int32VSV_SPys4Int8VGA2GtF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
         "name": "cb4u_peripheral_discover_services",
         "printedName": "cb4u_peripheral_discover_services(_:_:_:_:)",
         "children": [
@@ -5335,385 +5466,525 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 1057,
+      "offset": 1632,
+      "length": 88,
+      "value": "\"CBCharacteristicProperties.broadcast: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1719,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1736,
+      "length": 78,
+      "value": "\"CBCharacteristicProperties.read: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1813,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1830,
+      "length": 110,
+      "value": "\"CBCharacteristicProperties.writeWithoutResponse: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1939,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 1956,
+      "length": 80,
+      "value": "\"CBCharacteristicProperties.write: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2035,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2052,
+      "length": 82,
+      "value": "\"CBCharacteristicProperties.notify: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2133,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2150,
+      "length": 86,
+      "value": "\"CBCharacteristicProperties.indicate: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2235,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2252,
+      "length": 120,
+      "value": "\"CBCharacteristicProperties.authenticatedSignedWrites: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2371,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2388,
+      "length": 106,
+      "value": "\"CBCharacteristicProperties.extendedProperties: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2493,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2510,
+      "length": 118,
+      "value": "\"CBCharacteristicProperties.notifyEncryptionRequired: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2627,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2644,
+      "length": 122,
+      "value": "\"CBCharacteristicProperties.indicateEncryptionRequired: \""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2765,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
+      "kind": "StringLiteral",
+      "offset": 2870,
       "length": 30,
       "value": "\"Bluetooth is not powered on.\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 1184,
+      "offset": 2997,
       "length": 19,
       "value": "\"Already scanning.\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "BooleanLiteral",
-      "offset": 1340,
+      "offset": 3153,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "BooleanLiteral",
-      "offset": 1805,
+      "offset": 3618,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 1953,
+      "offset": 3766,
       "length": 19,
       "value": "\"peripheral is nil\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2085,
+      "offset": 3898,
       "length": 23,
       "value": "\"characteristic is nil\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2229,
+      "offset": 4042,
       "length": 13,
       "value": "\"Write Data \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2260,
+      "offset": 4073,
       "length": 6,
       "value": "\"%03d\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "IntegerLiteral",
-      "offset": 2283,
+      "offset": 4096,
       "length": 3,
       "value": "100"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "IntegerLiteral",
-      "offset": 2289,
+      "offset": 4102,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2727,
+      "offset": 4540,
       "length": 9,
       "value": "\"unknown\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2781,
+      "offset": 4594,
       "length": 11,
       "value": "\"resetting\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2839,
+      "offset": 4652,
       "length": 13,
       "value": "\"unsupported\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2900,
+      "offset": 4713,
       "length": 14,
       "value": "\"unauthorized\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 2960,
+      "offset": 4773,
       "length": 12,
       "value": "\"poweredOff\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3017,
+      "offset": 4830,
       "length": 11,
       "value": "\"poweredOn\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3074,
+      "offset": 4887,
       "length": 17,
       "value": "\"unknown default\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3248,
+      "offset": 5061,
       "length": 68,
       "value": "\"centralManagerDidUpdateState: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3315,
+      "offset": 5128,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3498,
+      "offset": 5311,
       "length": 29,
       "value": "\"Device found: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 3526,
+      "offset": 5339,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4011,
+      "offset": 5824,
       "length": 42,
       "value": "\"centralManager:didConnect: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4052,
+      "offset": 5865,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4260,
+      "offset": 6073,
       "length": 48,
       "value": "\"centralManager:didFailToConnect: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4307,
+      "offset": 6120,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4462,
+      "offset": 6275,
       "length": 55,
       "value": "\"centralManager:didDisconnectPeripheral: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4516,
+      "offset": 6329,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "Array",
-      "offset": 4709,
+      "offset": 6522,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4726,
+      "offset": 6539,
       "length": 45,
       "value": "\"peripheral:didDiscoverServices: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4770,
+      "offset": 6583,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4822,
+      "offset": 6635,
       "length": 17,
       "value": "\"error: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 4838,
+      "offset": 6651,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "Array",
-      "offset": 5222,
+      "offset": 7035,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 5239,
+      "offset": 7052,
       "length": 62,
       "value": "\"peripheral:didDiscoverCharacteristicsFor: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 5300,
+      "offset": 7113,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 5352,
+      "offset": 7165,
       "length": 17,
       "value": "\"error: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 5368,
+      "offset": 7181,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "BooleanLiteral",
-      "offset": 5815,
+      "offset": 7628,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6323,
+      "offset": 8136,
       "length": 49,
       "value": "\"peripheral:didUpdateValueFor: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6371,
+      "offset": 8184,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6423,
+      "offset": 8236,
       "length": 17,
       "value": "\"error: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6439,
+      "offset": 8252,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6543,
+      "offset": 8356,
       "length": 15,
       "value": "\"data: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6557,
+      "offset": 8370,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6578,
+      "offset": 8391,
       "length": 54,
       "value": "\"string: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6628,
+      "offset": 8441,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6631,
+      "offset": 8444,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6861,
+      "offset": 8674,
       "length": 48,
       "value": "\"peripheral:didWriteValueFor: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6908,
+      "offset": 8721,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6960,
+      "offset": 8773,
       "length": 17,
       "value": "\"error: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 6976,
+      "offset": 8789,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 7169,
+      "offset": 8982,
       "length": 61,
       "value": "\"peripheral:didUpdateNotificationStateFor: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 7229,
+      "offset": 9042,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 7281,
+      "offset": 9094,
       "length": 17,
       "value": "\"error: \""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/BLESample.swift",
       "kind": "StringLiteral",
-      "offset": 7297,
+      "offset": 9110,
       "length": 2,
       "value": "\"\""
     },
@@ -5748,112 +6019,133 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2314,
+      "offset": 2344,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2392,
+      "offset": 2482,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2638,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2893,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2971,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2616,
+      "offset": 3195,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2745,
+      "offset": 3324,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2851,
+      "offset": 3430,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3057,
+      "offset": 3636,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3186,
+      "offset": 3765,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3333,
+      "offset": 3912,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3411,
+      "offset": 3990,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 4010,
+      "offset": 4589,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 5446,
+      "offset": 6025,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 5454,
+      "offset": 6033,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 6116,
+      "offset": 6695,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 6124,
+      "offset": 6703,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 6821,
+      "offset": 7400,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7728,
+      "offset": 8307,
       "length": 2,
       "value": "-1"
     },
@@ -5867,14 +6159,14 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 5090,
+      "offset": 5606,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 5866,
+      "offset": 6382,
       "length": 1,
       "value": "0"
     },
