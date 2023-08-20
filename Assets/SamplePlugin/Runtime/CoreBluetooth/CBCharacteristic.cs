@@ -20,6 +20,8 @@ namespace CoreBluetooth
 
         public byte[] value { get; private set; }
         internal void SetValue(byte[] value) => this.value = value;
+        public bool isNotifying { get; private set; } = false;
+        internal void SetIsNotifying(bool value) => this.isNotifying = value;
 
         internal CBCharacteristic(string uuid, CBService service, ICharacteristicNativeMethods nativeMethods)
         {
@@ -31,7 +33,8 @@ namespace CoreBluetooth
         public override string ToString()
         {
             var valueText = value == null ? "null" : $"{{length = {value.Length}, bytes = {BitConverter.ToString(value).Replace("-", "")}}}";
-            return $"CBCharacteristic: UUID={uuid}, properties={properties}, value={valueText}";
+            var notifyingText = isNotifying ? "YES" : "NO";
+            return $"CBCharacteristic: UUID = {uuid}, properties = {properties}, value = {valueText}, notifying = {notifyingText}";
         }
 
         public CBCharacteristicProperties properties => nativeMethods.GetCharacteristicProperties(this);

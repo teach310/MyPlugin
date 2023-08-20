@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CoreBluetooth
 {
@@ -9,6 +10,7 @@ namespace CoreBluetooth
         void DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs);
         void ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic);
         void WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type);
+        void SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled);
     }
 
     // https://developer.apple.com/documentation/corebluetooth/cbperipheral
@@ -35,6 +37,22 @@ namespace CoreBluetooth
         public override string ToString()
         {
             return $"CBPeripheral: identifier = {identifier}, name = {name}, state = {state}";
+        }
+
+        internal CBCharacteristic FindCharacteristic(string serviceUUID, string characteristicUUID)
+        {
+            if (string.IsNullOrEmpty(serviceUUID))
+            {
+                return services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.uuid == characteristicUUID);
+            } else {
+                var service = services.FirstOrDefault(s => s.uuid == serviceUUID);
+                if (service == null) {
+                    UnityEngine.Debug.LogError($"CBPeripheral: service {serviceUUID} not found");
+                    return null;
+                }
+
+                return service.characteristics.FirstOrDefault(c => c.uuid == characteristicUUID);
+            }
         }
 
         internal void SetState(CBPeripheralState state) => this.state = state;
@@ -67,6 +85,14 @@ namespace CoreBluetooth
         internal void OnDidWriteValueForCharacteristic(CBCharacteristic characteristic, CBError error)
         {
             peripheralDelegate?.DidWriteValue(this, characteristic, error);
+        }
+
+        public void SetNotifyValue(bool enabled, CBCharacteristic characteristic) => nativeMethods.SetNotifyValueForCharacteristic(this, characteristic, enabled);
+
+        internal void OnDidUpdateNotificationStateForCharacteristic(CBCharacteristic characteristic, bool isNotifying, CBError error)
+        {
+            characteristic.SetIsNotifying(isNotifying);
+            peripheralDelegate?.DidUpdateNotificationState(this, characteristic, error);
         }
     }
 

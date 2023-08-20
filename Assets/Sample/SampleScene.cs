@@ -13,10 +13,12 @@ public class SampleScene : MonoBehaviour
     {
         string serviceUUID = "068C47B7-FC04-4D47-975A-7952BE1A576F";
         string characteristicUUID = "E3737B3F-A08D-405B-B32D-35A8F6C64C5D";
+        string notifyCharacteristicUUID = "C9DA2CE8-D119-40D5-90F7-EF24627E8193";
 
         CBCentralManager centralManager;
         CBPeripheral peripheral;
         CBCharacteristic remoteCharacteristic;
+        CBCharacteristic remoteNotifyCharacteristic;
 
         public void Init()
         {
@@ -59,7 +61,6 @@ public class SampleScene : MonoBehaviour
                 return;
             }
 
-            // ランダムな三桁の数値の文字列を書き込む
             var value = UnityEngine.Random.Range(100, 1000).ToString();
             var data = Encoding.UTF8.GetBytes(value);
             peripheral.WriteValue(data, remoteCharacteristic, CBCharacteristicWriteType.withResponse);
@@ -107,7 +108,7 @@ public class SampleScene : MonoBehaviour
             foreach (var service in peripheral.services)
             {
                 Debug.Log($"Service: {service}");
-                peripheral.DiscoverCharacteristics(new string[] { characteristicUUID }, service);
+                peripheral.DiscoverCharacteristics(new string[] { characteristicUUID, notifyCharacteristicUUID }, service);
             }
         }
 
@@ -121,6 +122,12 @@ public class SampleScene : MonoBehaviour
             {
                 Debug.Log($"Characteristic not found: {characteristicUUID}");
                 return;
+            }
+
+            remoteNotifyCharacteristic = characteristics.FirstOrDefault(c => c.uuid == notifyCharacteristicUUID);
+            if (remoteNotifyCharacteristic != null)
+            {
+                peripheral.SetNotifyValue(true, remoteNotifyCharacteristic);
             }
 
             foreach (var characteristic in characteristics)
@@ -149,6 +156,16 @@ public class SampleScene : MonoBehaviour
         public void DidWriteValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error)
         {
             Debug.Log($"DidWriteValue: {characteristic}");
+            if (error != null)
+            {
+                Debug.Log($"Error: {error}");
+                return;
+            }
+        }
+
+        public void DidUpdateNotificationState(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error)
+        {
+            Debug.Log($"DidUpdateNotificationState: {characteristic}");
             if (error != null)
             {
                 Debug.Log($"Error: {error}");

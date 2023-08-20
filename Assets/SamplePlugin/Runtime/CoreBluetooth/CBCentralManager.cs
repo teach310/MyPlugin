@@ -131,6 +131,22 @@ namespace CoreBluetooth
             }
         }
 
+        void IPeripheralNativeMethods.SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled)
+        {
+            int result = NativeMethods.cb4u_peripheral_set_notify_value_for_characteristic(
+                handle,
+                peripheral.identifier,
+                characteristic.service.uuid,
+                characteristic.uuid,
+                enabled
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute set notify value for characteristic.");
+            }
+        }
+
         CBCharacteristicProperties ICharacteristicNativeMethods.GetCharacteristicProperties(CBCharacteristic characteristic)
         {
             var propertiesInt = NativeMethods.cb4u_central_manager_characteristic_properties(
@@ -268,22 +284,10 @@ namespace CoreBluetooth
                 return;
             }
 
-            var serviceId = Marshal.PtrToStringUTF8(serviceIdPtr);
-            var characteristicId = Marshal.PtrToStringUTF8(characteristicIdPtr);
-            CBCharacteristic characteristic = null;
-
-            if (string.IsNullOrEmpty(serviceId))
-            {
-                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.uuid == characteristicId);
-            } else {
-                var service = peripheral.services.FirstOrDefault(s => s.uuid == serviceId);
-                if (service == null)
-                {
-                    UnityEngine.Debug.LogError("Service not found.");
-                    return;
-                }
-                characteristic = service.characteristics.FirstOrDefault(c => c.uuid == characteristicId);
-            }
+            var characteristic = peripheral.FindCharacteristic(
+                Marshal.PtrToStringUTF8(serviceIdPtr),
+                Marshal.PtrToStringUTF8(characteristicIdPtr)
+            );
             var valueBytes = new byte[valueLength];
             Marshal.Copy(valuePtr, valueBytes, 0, valueLength);
             characteristic.SetValue(valueBytes);
@@ -298,23 +302,28 @@ namespace CoreBluetooth
                 return;
             }
 
-            var serviceId = Marshal.PtrToStringUTF8(serviceIdPtr);
-            var characteristicId = Marshal.PtrToStringUTF8(characteristicIdPtr);
-            CBCharacteristic characteristic = null;
-
-            if (string.IsNullOrEmpty(serviceId))
-            {
-                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.uuid == characteristicId);
-            } else {
-                var service = peripheral.services.FirstOrDefault(s => s.uuid == serviceId);
-                if (service == null)
-                {
-                    UnityEngine.Debug.LogError("Service not found.");
-                    return;
-                }
-                characteristic = service.characteristics.FirstOrDefault(c => c.uuid == characteristicId);
-            }
+            var characteristic = peripheral.FindCharacteristic(
+                Marshal.PtrToStringUTF8(serviceIdPtr),
+                Marshal.PtrToStringUTF8(characteristicIdPtr)
+            );
             peripheral.OnDidWriteValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
+        }
+
+        void OnDidUpdateNotificationStateForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            var characteristic = peripheral.FindCharacteristic(
+                Marshal.PtrToStringUTF8(serviceIdPtr),
+                Marshal.PtrToStringUTF8(characteristicIdPtr)
+            );
+
+            bool isNotifying = notificationState == 1;
+            peripheral.OnDidUpdateNotificationStateForCharacteristic(characteristic, isNotifying, CBError.CreateOrNullFromCode(errorCode));
         }
 
         static class CentralEventHandler
@@ -331,7 +340,8 @@ namespace CoreBluetooth
                     OnDidDiscoverServices,
                     OnDidDiscoverCharacteristics,
                     OnDidUpdateValueForCharacteristic,
-                    OnDidWriteValueForCharacteristic
+                    OnDidWriteValueForCharacteristic,
+                    OnDidUpdateNotificationStateForCharacteristic
                 );
             }
 
@@ -398,6 +408,12 @@ namespace CoreBluetooth
             internal static void OnDidWriteValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidWriteValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler))]
+            internal static void OnDidUpdateNotificationStateForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateNotificationStateForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, notificationState, errorCode));
             }
         }
     }
