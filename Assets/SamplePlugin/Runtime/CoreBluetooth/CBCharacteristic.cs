@@ -1,3 +1,5 @@
+using System;
+
 namespace CoreBluetooth
 {
     internal interface ICharacteristicNativeMethods
@@ -28,7 +30,8 @@ namespace CoreBluetooth
 
         public override string ToString()
         {
-            return $"CBCharacteristic: UUID={uuid}, properties={properties}";
+            var valueText = value == null ? "null" : $"{{length = {value.Length}, bytes = {BitConverter.ToString(value).Replace("-", "")}}}";
+            return $"CBCharacteristic: UUID={uuid}, properties={properties}, value={valueText}";
         }
 
         public CBCharacteristicProperties properties => nativeMethods.GetCharacteristicProperties(this);

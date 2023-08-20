@@ -5,16 +5,18 @@ using UnityEngine;
 using CoreBluetooth;
 using System;
 using System.Text;
+using System.Linq;
 
 public class SampleScene : MonoBehaviour
 {
     public class BLESample : CBCentralManagerDelegate, CBPeripheralDelegate, IDisposable
     {
-        string serviceUUID = "068c47b7-fc04-4d47-975a-7952be1a576f";
-        string characteristicUUID = "e3737b3f-a08d-405b-b32d-35a8f6c64c5d";
+        string serviceUUID = "068C47B7-FC04-4D47-975A-7952BE1A576F";
+        string characteristicUUID = "E3737B3F-A08D-405B-B32D-35A8F6C64C5D";
 
         CBCentralManager centralManager;
         CBPeripheral peripheral;
+        CBCharacteristic remoteCharacteristic;
 
         public void Init()
         {
@@ -41,6 +43,26 @@ public class SampleScene : MonoBehaviour
         public bool IsConnected()
         {
             return peripheral != null && peripheral.state == CBPeripheralState.connected;
+        }
+
+        public void WriteData()
+        {
+            if (peripheral == null)
+            {
+                Debug.Log("Peripheral is null.");
+                return;
+            }
+
+            if (remoteCharacteristic == null)
+            {
+                Debug.Log("Remote characteristic is null.");
+                return;
+            }
+
+            // ランダムな三桁の数値の文字列を書き込む
+            var value = UnityEngine.Random.Range(100, 1000).ToString();
+            var data = Encoding.UTF8.GetBytes(value);
+            peripheral.WriteValue(data, remoteCharacteristic, CBCharacteristicWriteType.withResponse);
         }
 
         public void CentralManagerDidUpdateState(CBCentralManager central)
@@ -92,7 +114,16 @@ public class SampleScene : MonoBehaviour
         public void DidDiscoverCharacteristics(CBPeripheral peripheral, CBService service, CBError error)
         {
             Debug.Log($"DidDiscoverCharacteristics: {peripheral}");
-            foreach (var characteristic in service.characteristics)
+            var characteristics = service.characteristics;
+
+            remoteCharacteristic = characteristics.FirstOrDefault(c => c.uuid == characteristicUUID);
+            if (remoteCharacteristic == null)
+            {
+                Debug.Log($"Characteristic not found: {characteristicUUID}");
+                return;
+            }
+
+            foreach (var characteristic in characteristics)
             {
                 Debug.Log($"Characteristic: {characteristic}");
                 if (characteristic.properties.HasFlag(CBCharacteristicProperties.Read))
@@ -104,7 +135,7 @@ public class SampleScene : MonoBehaviour
 
         public void DidUpdateValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error)
         {
-            Debug.Log($"DidUpdateValue: {peripheral}");
+            Debug.Log($"DidUpdateValue: {characteristic}");
             if (error != null)
             {
                 Debug.Log($"Error: {error}");
@@ -113,6 +144,16 @@ public class SampleScene : MonoBehaviour
 
             var str = Encoding.UTF8.GetString(characteristic.value);
             Debug.Log($"Data: {str}");
+        }
+
+        public void DidWriteValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error)
+        {
+            Debug.Log($"DidWriteValue: {characteristic}");
+            if (error != null)
+            {
+                Debug.Log($"Error: {error}");
+                return;
+            }
         }
     }
 
@@ -128,7 +169,7 @@ public class SampleScene : MonoBehaviour
     {
         if (ble.IsConnected())
         {
-            Debug.Log("Already connected.");
+            ble.WriteData();
         }
         else
         {

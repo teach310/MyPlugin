@@ -26,7 +26,9 @@ namespace CoreBluetooth
         // NOTE: use comma separated service ids to avoid to use array of string
         internal delegate void CB4UPeripheralDidDiscoverServicesHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode);
         internal delegate void CB4UPeripheralDidDiscoverCharacteristicsHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode);
+        // TODO: writeValueの引数名がdataだったため、valueじゃなくてdataにすることを検討
         internal delegate void CB4UPeripheralDidUpdateValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode);
+        internal delegate void CB4UPeripheralDidWriteValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_register_handlers(
@@ -38,7 +40,8 @@ namespace CoreBluetooth
             CB4UCentralManagerDidDisconnectPeripheralHandler didDisconnectPeripheralHandler,
             CB4UPeripheralDidDiscoverServicesHandler didDiscoverServicesHandler,
             CB4UPeripheralDidDiscoverCharacteristicsHandler didDiscoverCharacteristicsHandler,
-            CB4UPeripheralDidUpdateValueForCharacteristicHandler didUpdateValueForCharacteristicHandler
+            CB4UPeripheralDidUpdateValueForCharacteristicHandler didUpdateValueForCharacteristicHandler,
+            CB4UPeripheralDidWriteValueForCharacteristicHandler didWriteValueForCharacteristicHandler
         );
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -58,6 +61,9 @@ namespace CoreBluetooth
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_central_manager_connect_peripheral(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
+        // characteristicなため名前central_managerではなくperipheralの方が適切な気はする。
+        // しかし、peripheral_managerと区別するためにcentral_managerに寄せた方がいい気もする。
+        // とりあえずcentral_managerに寄せておいてあとで検討する。
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_central_manager_characteristic_properties(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
 
@@ -69,5 +75,8 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_peripheral_read_value_for_characteristic(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int cb4u_peripheral_write_value_for_characteristic(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 5)] byte[] dataBytes, int dataLength, int writeType);
     }
 }

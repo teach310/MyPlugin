@@ -6,7 +6,7 @@ using System.Linq;
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager
-    public class CBCentralManager : SafeHandle, ICharacteristicNativeMethods
+    public class CBCentralManager : SafeHandle, ICharacteristicNativeMethods, IPeripheralNativeMethods
     {
         static readonly Dictionary<IntPtr, CBCentralManager> instanceMap = new Dictionary<IntPtr, CBCentralManager>();
         // key: peripheralId, value: CBPeripheral
@@ -67,7 +67,7 @@ namespace CoreBluetooth
 
         #endregion
 
-        internal void DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
+        void IPeripheralNativeMethods.DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
         {
             int result = NativeMethods.cb4u_peripheral_discover_services(
                 handle,
@@ -82,7 +82,7 @@ namespace CoreBluetooth
             }
         }
 
-        internal void DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs)
+        void IPeripheralNativeMethods.DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs)
         {
             int result = NativeMethods.cb4u_peripheral_discover_characteristics(
                 handle,
@@ -98,7 +98,7 @@ namespace CoreBluetooth
             }
         }
 
-        internal void ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic)
+        void IPeripheralNativeMethods.ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic)
         {
             int result = NativeMethods.cb4u_peripheral_read_value_for_characteristic(
                 handle,
@@ -110,6 +110,24 @@ namespace CoreBluetooth
             if (result < 0)
             {
                 UnityEngine.Debug.LogError("Failed to execute read value for characteristic.");
+            }
+        }
+
+        void IPeripheralNativeMethods.WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type)
+        {
+            int result = NativeMethods.cb4u_peripheral_write_value_for_characteristic(
+                handle,
+                peripheral.identifier,
+                characteristic.service.uuid,
+                characteristic.uuid,
+                data,
+                data.Length,
+                (int)type
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute write value for characteristic.");
             }
         }
 
@@ -149,9 +167,9 @@ namespace CoreBluetooth
         void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
             var peripheral = new CBPeripheral(
-                this,
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
-                Marshal.PtrToStringUTF8(peripheralNamePtr)
+                Marshal.PtrToStringUTF8(peripheralNamePtr),
+                this
             );
 
             peripherals[peripheral.identifier] = peripheral;
@@ -272,6 +290,33 @@ namespace CoreBluetooth
             peripheral.OnDidUpdateValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
         }
 
+        void OnDidWriteValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            var serviceId = Marshal.PtrToStringUTF8(serviceIdPtr);
+            var characteristicId = Marshal.PtrToStringUTF8(characteristicIdPtr);
+            CBCharacteristic characteristic = null;
+
+            if (string.IsNullOrEmpty(serviceId))
+            {
+                characteristic = peripheral.services.SelectMany(s => s.characteristics).FirstOrDefault(c => c.uuid == characteristicId);
+            } else {
+                var service = peripheral.services.FirstOrDefault(s => s.uuid == serviceId);
+                if (service == null)
+                {
+                    UnityEngine.Debug.LogError("Service not found.");
+                    return;
+                }
+                characteristic = service.characteristics.FirstOrDefault(c => c.uuid == characteristicId);
+            }
+            peripheral.OnDidWriteValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
+        }
+
         static class CentralEventHandler
         {
             internal static void Register(IntPtr centralPtr)
@@ -285,7 +330,8 @@ namespace CoreBluetooth
                     OnDidDisconnectPeripheral,
                     OnDidDiscoverServices,
                     OnDidDiscoverCharacteristics,
-                    OnDidUpdateValueForCharacteristic
+                    OnDidUpdateValueForCharacteristic,
+                    OnDidWriteValueForCharacteristic
                 );
             }
 
@@ -346,6 +392,12 @@ namespace CoreBluetooth
             internal static void OnDidUpdateValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, valuePtr, valueLength, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidWriteValueForCharacteristicHandler))]
+            internal static void OnDidWriteValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidWriteValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, errorCode));
             }
         }
     }

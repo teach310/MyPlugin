@@ -5,7 +5,7 @@ namespace CoreBluetooth
         void DidDiscoverServices(CBPeripheral peripheral, CBError error);
         void DidDiscoverCharacteristics(CBPeripheral peripheral, CBService service, CBError error);
         void DidUpdateValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error);
-        // void DidWriteValue(CBPeripheral peripheral, CBCharacteristic characteristic, NSError error);
+        void DidWriteValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error);
         // void DidUpdateNotificationState(CBPeripheral peripheral, CBCharacteristic characteristic, NSError error);
         // void DidDiscoverDescriptors(CBPeripheral peripheral, CBCharacteristic characteristic, NSError error);
         // void DidUpdateValue(CBPeripheral peripheral, CBDescriptor descriptor, NSError error);
