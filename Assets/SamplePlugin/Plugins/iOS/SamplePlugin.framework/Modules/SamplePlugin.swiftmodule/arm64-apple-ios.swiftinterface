@@ -37,6 +37,7 @@ import _StringProcessing
   public func discoverCharacteristics(_ peripheralId: Swift.String, _ serviceUUID: CoreBluetooth.CBUUID, _ characteristicUUIDs: [CoreBluetooth.CBUUID]?) -> Swift.Int32
   public func readValue(_ peripheralId: Swift.String, _ serviceUUID: CoreBluetooth.CBUUID, _ characteristicUUID: CoreBluetooth.CBUUID) -> Swift.Int32
   public func writeValue(_ peripheralId: Swift.String, _ serviceUUID: CoreBluetooth.CBUUID, _ characteristicUUID: CoreBluetooth.CBUUID, _ data: Foundation.Data, _ type: CoreBluetooth.CBCharacteristicWriteType) -> Swift.Int32
+  public func setNotifyValue(_ peripheralId: Swift.String, _ serviceUUID: CoreBluetooth.CBUUID, _ characteristicUUID: CoreBluetooth.CBUUID, _ enabled: Swift.Bool) -> Swift.Int32
   @objc public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
   @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
   @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
@@ -46,6 +47,7 @@ import _StringProcessing
   @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverCharacteristicsFor service: CoreBluetooth.CBService, error: (any Swift.Error)?)
   @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
   @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didWriteValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateNotificationStateFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
   @objc deinit
 }
 @_cdecl("cb4u_central_manager_new")
@@ -61,8 +63,9 @@ public typealias CB4UPeripheralDidDiscoverServicesHandler = @convention(c) (Swif
 public typealias CB4UPeripheralDidDiscoverCharacteristicsHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.Int32) -> Swift.Void
 public typealias CB4UPeripheralDidUpdateValueForCharacteristicHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.UInt8>, Swift.Int32, Swift.Int32) -> Swift.Void
 public typealias CB4UPeripheralDidWriteValueForCharacteristicHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.Int32) -> Swift.Void
+public typealias CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler = @convention(c) (Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.UnsafePointer<Swift.CChar>, Swift.Int32, Swift.Int32) -> Swift.Void
 @_cdecl("cb4u_central_manager_register_handlers")
-public func cb4u_central_manager_register_handlers(_ centralPtr: Swift.UnsafeRawPointer, _ didUpdateStateHandler: SamplePlugin.CB4UCentralManagerDidUpdateStateHandler, _ didDiscoverPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDiscoverPeripheralHandler, _ didConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidConnectPeripheralHandler, _ didFailToConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidFailToConnectPeripheralHandler, _ didDisconnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDisconnectPeripheralHandler, _ didDiscoverServicesHandler: SamplePlugin.CB4UPeripheralDidDiscoverServicesHandler, _ didDiscoverCharacteristicsHandler: SamplePlugin.CB4UPeripheralDidDiscoverCharacteristicsHandler, _ didUpdateValueForCharacteristicHandler: SamplePlugin.CB4UPeripheralDidUpdateValueForCharacteristicHandler, _ didWriteValueForCharacteristicHandler: SamplePlugin.CB4UPeripheralDidWriteValueForCharacteristicHandler)
+public func cb4u_central_manager_register_handlers(_ centralPtr: Swift.UnsafeRawPointer, _ didUpdateStateHandler: SamplePlugin.CB4UCentralManagerDidUpdateStateHandler, _ didDiscoverPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDiscoverPeripheralHandler, _ didConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidConnectPeripheralHandler, _ didFailToConnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidFailToConnectPeripheralHandler, _ didDisconnectPeripheralHandler: SamplePlugin.CB4UCentralManagerDidDisconnectPeripheralHandler, _ didDiscoverServicesHandler: SamplePlugin.CB4UPeripheralDidDiscoverServicesHandler, _ didDiscoverCharacteristicsHandler: SamplePlugin.CB4UPeripheralDidDiscoverCharacteristicsHandler, _ didUpdateValueForCharacteristicHandler: SamplePlugin.CB4UPeripheralDidUpdateValueForCharacteristicHandler, _ didWriteValueForCharacteristicHandler: SamplePlugin.CB4UPeripheralDidWriteValueForCharacteristicHandler, _ didUpdateNotificationStateForCharacteristicHandler: SamplePlugin.CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler)
 @_cdecl("cb4u_central_manager_scan_for_peripherals")
 public func cb4u_central_manager_scan_for_peripherals(_ centralPtr: Swift.UnsafeRawPointer, _ serviceUUIDs: Swift.UnsafePointer<Swift.UnsafePointer<Swift.CChar>?>, _ serviceUUIDsCount: Swift.Int32)
 @_cdecl("cb4u_central_manager_stop_scan")
@@ -81,5 +84,7 @@ public func cb4u_peripheral_discover_characteristics(_ centralPtr: Swift.UnsafeR
 public func cb4u_peripheral_read_value_for_characteristic(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>, _ serviceId: Swift.UnsafePointer<Swift.CChar>, _ characteristicId: Swift.UnsafePointer<Swift.CChar>) -> Swift.Int32
 @_cdecl("cb4u_peripheral_write_value_for_characteristic")
 public func cb4u_peripheral_write_value_for_characteristic(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>, _ serviceId: Swift.UnsafePointer<Swift.CChar>, _ characteristicId: Swift.UnsafePointer<Swift.CChar>, _ dataBytes: Swift.UnsafePointer<Swift.UInt8>, _ dataLength: Swift.Int32, _ writeType: Swift.Int32) -> Swift.Int32
+@_cdecl("cb4u_peripheral_set_notify_value_for_characteristic")
+public func cb4u_peripheral_set_notify_value_for_characteristic(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>, _ serviceId: Swift.UnsafePointer<Swift.CChar>, _ characteristicId: Swift.UnsafePointer<Swift.CChar>, _ enabled: Swift.Bool) -> Swift.Int32
 @_cdecl("sample_plugin_helloworld")
 public func sample_plugin_helloworld() -> Swift.Int32
