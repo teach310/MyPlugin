@@ -124,6 +124,11 @@ public class SampleScene : MonoBehaviour
                 return;
             }
 
+            if (remoteCharacteristic.properties.HasFlag(CBCharacteristicProperties.Notify))
+            {
+                peripheral.SetNotifyValue(true, remoteCharacteristic);
+            }
+
             remoteNotifyCharacteristic = characteristics.FirstOrDefault(c => c.uuid == notifyCharacteristicUUID);
             if (remoteNotifyCharacteristic != null)
             {
