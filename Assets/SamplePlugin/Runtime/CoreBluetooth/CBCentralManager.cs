@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Linq;
+using System.Text;
 
 namespace CoreBluetooth
 {
@@ -29,6 +30,65 @@ namespace CoreBluetooth
 
         public CBManagerState state { get; private set; } = CBManagerState.unknown;
         public CBCentralManagerDelegate centralManagerDelegate { get; set; }
+
+        string GetPeripheralName(string peripheralId)
+        {
+            var sb = new StringBuilder(256);
+            var result = NativeMethods.cb4u_central_manager_peripheral_name(
+                handle,
+                peripheralId,
+                sb,
+                sb.Capacity
+            );
+
+            if (result < 0)
+            {
+                return string.Empty;
+            }
+
+            return sb.ToString();
+        }
+
+        CBPeripheral GetOrCreatePeripheral(string peripheralId)
+        {
+            if (peripherals.TryGetValue(peripheralId, out var peripheral))
+            {
+                return peripheral;
+            }
+            else
+            {
+                return new CBPeripheral(peripheralId, GetPeripheralName(peripheralId), this);
+            }
+        }
+
+        public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] peripheralUUIDs)
+        {
+            var sbSize = peripheralUUIDs.Length * (36 + 1) + 1; // 36 is the length of UUID string, 1 is for comma.
+            var sb = new StringBuilder(sbSize);
+            var result = NativeMethods.cb4u_central_manager_retrieve_peripherals_with_identifiers(
+                handle,
+                peripheralUUIDs,
+                peripheralUUIDs.Length,
+                sb,
+                sbSize
+            );
+
+            if (result < 0)
+            {
+                return new CBPeripheral[0];
+            }
+
+            var commaSeparatedPeripheralUUIDs = sb.ToString();
+            var foundPeripherals = commaSeparatedPeripheralUUIDs
+                .Split(',')
+                .Select(uuid => GetOrCreatePeripheral(uuid))
+                .ToArray();
+            foreach (var peripheral in foundPeripherals)
+            {
+                peripherals[peripheral.identifier] = peripheral;
+            }
+            return foundPeripherals;
+        }
 
         #region Scanning or Stopping Scans of Peripherals
 

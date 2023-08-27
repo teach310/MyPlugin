@@ -69,6 +69,22 @@ public class SampleScene : MonoBehaviour
         public void CentralManagerDidUpdateState(CBCentralManager central)
         {
             Debug.Log($"CentralManagerDidUpdateState: {central.state}");
+            if (central.state == CBManagerState.poweredOn)
+            {
+                var result = central.RetrievePeripheralsWithIdentifiers(new string[] { "96487783-E444-C916-AB1D-62606B316FC4", "5DA66236-5B9D-F4F3-9CFD-49C8C0C373DD" });
+                if (result.Length == 0)
+                {
+                    Debug.Log("Peripheral not found.");
+                    return;
+                }
+                foreach (var peripheral in result)
+                {
+                    Debug.Log($"RetrievePeripheralsWithIdentifiers: {peripheral}");
+                    // this.peripheral = peripheral;
+                    // peripheral.peripheralDelegate = this;
+                    // central.Connect(peripheral);
+                }
+            }
         }
 
         public void CentralManagerDidDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral)
