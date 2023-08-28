@@ -86,6 +86,8 @@ public class SampleScene : MonoBehaviour
                     peripheral.peripheralDelegate = this;
                     central.Connect(peripheral);
                     Debug.Log($"Try Connect: {peripheral}");
+                    central.CancelPeripheralConnection(peripheral);
+                    Debug.Log($"Try CancelPeripheralConnection: {peripheral}");
                 }
             }
         }

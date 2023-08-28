@@ -124,6 +124,15 @@ namespace CoreBluetooth
             }
         }
 
+        public void CancelPeripheralConnection(CBPeripheral peripheral)
+        {
+            int result = NativeMethods.cb4u_central_manager_cancel_peripheral_connection(handle, peripheral.identifier);
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute cancel peripheral connection.");
+            }
+        }
+
         #endregion
 
         void IPeripheralNativeMethods.DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
