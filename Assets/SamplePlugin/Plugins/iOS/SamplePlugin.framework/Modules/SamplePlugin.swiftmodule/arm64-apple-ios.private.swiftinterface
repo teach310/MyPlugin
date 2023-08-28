@@ -48,6 +48,7 @@ import _StringProcessing
     get
   }
   public func connect(_ peripheralId: Swift.String) -> Swift.Int32
+  public func cancelPeripheralConnection(_ peripheralId: Swift.String) -> Swift.Int32
   public func characteristicProperties(_ peripheralId: Swift.String, _ serviceId: Swift.String, _ characteristicId: Swift.String) -> Swift.Int32
   public func discoverServices(_ peripheralId: Swift.String, _ serviceUUIDs: [CoreBluetooth.CBUUID]?) -> Swift.Int32
   public func discoverCharacteristics(_ peripheralId: Swift.String, _ serviceUUID: CoreBluetooth.CBUUID, _ characteristicUUIDs: [CoreBluetooth.CBUUID]?) -> Swift.Int32
@@ -92,6 +93,8 @@ public func cb4u_central_manager_stop_scan(_ centralPtr: Swift.UnsafeRawPointer)
 public func cb4u_central_manager_is_scanning(_ centralPtr: Swift.UnsafeRawPointer) -> Swift.Bool
 @_cdecl("cb4u_central_manager_connect_peripheral")
 public func cb4u_central_manager_connect_peripheral(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>) -> Swift.Int32
+@_cdecl("cb4u_central_manager_cancel_peripheral_connection")
+public func cb4u_central_manager_cancel_peripheral_connection(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>) -> Swift.Int32
 @_cdecl("cb4u_central_manager_peripheral_name")
 public func cb4u_central_manager_peripheral_name(_ centralPtr: Swift.UnsafeRawPointer, _ peripheralId: Swift.UnsafePointer<Swift.CChar>, _ sb: Swift.UnsafeMutablePointer<Swift.CChar>, _ sbSize: Swift.Int32) -> Swift.Int32
 @_cdecl("cb4u_central_manager_peripheral_state")

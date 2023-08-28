@@ -5702,6 +5702,34 @@
           },
           {
             "kind": "Function",
+            "name": "cancelPeripheralConnection",
+            "printedName": "cancelPeripheralConnection(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC26cancelPeripheralConnectionys5Int32VSSF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC26cancelPeripheralConnectionys5Int32VSSF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "characteristicProperties",
             "printedName": "characteristicProperties(_:_:_:)",
             "children": [
@@ -7477,6 +7505,48 @@
       },
       {
         "kind": "Function",
+        "name": "cb4u_central_manager_cancel_peripheral_connection",
+        "printedName": "cb4u_central_manager_cancel_peripheral_connection(_:_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafeRawPointer",
+            "printedName": "Swift.UnsafeRawPointer",
+            "usr": "s:SV"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)cb4u_central_manager_cancel_peripheral_connection::",
+        "mangledName": "$s12SamplePlugin49cb4u_central_manager_cancel_peripheral_connectionys5Int32VSV_SPys4Int8VGtF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
         "name": "cb4u_central_manager_peripheral_name",
         "printedName": "cb4u_central_manager_peripheral_name(_:_:_:_:)",
         "children": [
@@ -9014,217 +9084,231 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4284,
+      "offset": 4237,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4422,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4578,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4833,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4911,
+      "offset": 4327,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5135,
+      "offset": 4544,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5264,
+      "offset": 4682,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5370,
+      "offset": 4838,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5093,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5171,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5576,
+      "offset": 5395,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5705,
+      "offset": 5524,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5852,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5930,
+      "offset": 5630,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6186,
+      "offset": 5836,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6315,
+      "offset": 5965,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6462,
+      "offset": 6112,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6568,
+      "offset": 6190,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6796,
+      "offset": 6446,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6925,
+      "offset": 6575,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7072,
+      "offset": 6722,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7164,
+      "offset": 6828,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7056,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7185,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7332,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7424,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 7763,
+      "offset": 8023,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9199,
+      "offset": 9459,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9207,
+      "offset": 9467,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9869,
+      "offset": 10129,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9877,
+      "offset": 10137,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 10574,
+      "offset": 10834,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 11567,
+      "offset": 11827,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 12297,
+      "offset": 12557,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 12424,
+      "offset": 12684,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 12428,
+      "offset": 12688,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 13033,
+      "offset": 13293,
       "length": 2,
       "value": "-1"
     },
@@ -9252,14 +9336,14 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 8218,
+      "offset": 8602,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 8994,
+      "offset": 9378,
       "length": 1,
       "value": "0"
     },
