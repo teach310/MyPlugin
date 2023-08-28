@@ -71,7 +71,9 @@ public class SampleScene : MonoBehaviour
             Debug.Log($"CentralManagerDidUpdateState: {central.state}");
             if (central.state == CBManagerState.poweredOn)
             {
-                var result = central.RetrievePeripheralsWithIdentifiers(new string[] { "96487783-E444-C916-AB1D-62606B316FC4", "5DA66236-5B9D-F4F3-9CFD-49C8C0C373DD" });
+                // var peripheralIds = new string[] { "96487783-E444-C916-AB1D-62606B316FC4", "5DA66236-5B9D-F4F3-9CFD-49C8C0C373DD" };
+                var peripheralIds = new string[] { "5DA66236-5B9D-F4F3-9CFD-49C8C0C373DD" };
+                var result = central.RetrievePeripheralsWithIdentifiers(peripheralIds);
                 if (result.Length == 0)
                 {
                     Debug.Log("Peripheral not found.");
@@ -80,9 +82,10 @@ public class SampleScene : MonoBehaviour
                 foreach (var peripheral in result)
                 {
                     Debug.Log($"RetrievePeripheralsWithIdentifiers: {peripheral}");
-                    // this.peripheral = peripheral;
-                    // peripheral.peripheralDelegate = this;
-                    // central.Connect(peripheral);
+                    this.peripheral = peripheral;
+                    peripheral.peripheralDelegate = this;
+                    central.Connect(peripheral);
+                    Debug.Log($"Try Connect: {peripheral}");
                 }
             }
         }

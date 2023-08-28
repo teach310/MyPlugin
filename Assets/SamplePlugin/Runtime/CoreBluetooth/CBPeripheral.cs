@@ -11,6 +11,7 @@ namespace CoreBluetooth
         void ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic);
         void WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type);
         void SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled);
+        CBPeripheralState GetPeripheralState(CBPeripheral peripheral);
     }
 
     // https://developer.apple.com/documentation/corebluetooth/cbperipheral
@@ -19,17 +20,16 @@ namespace CoreBluetooth
         IPeripheralNativeMethods nativeMethods;
         public string identifier { get; }
         public string name { get; }
-        public CBPeripheralState state { get; private set; }
+        public CBPeripheralState state => nativeMethods.GetPeripheralState(this);
         public CBPeripheralDelegate peripheralDelegate { get; set; }
         List<CBService> _services = new List<CBService>();
         public ReadOnlyCollection<CBService> services { get; }
 
-        internal CBPeripheral(string id, string name, IPeripheralNativeMethods nativeMethods, CBPeripheralState state = CBPeripheralState.disconnected)
+        internal CBPeripheral(string id, string name, IPeripheralNativeMethods nativeMethods)
         {
             this.identifier = id;
             this.name = name;
             this.nativeMethods = nativeMethods;
-            this.state = state;
             this.services = _services.AsReadOnly();
         }
 
@@ -55,7 +55,6 @@ namespace CoreBluetooth
             }
         }
 
-        internal void SetState(CBPeripheralState state) => this.state = state;
         public void DiscoverServices(string[] serviceUUIDs) => nativeMethods.DiscoverServices(this, serviceUUIDs);
 
         internal void OnDidDiscoverServices(CBService[] services, CBError error)

@@ -117,7 +117,6 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogWarning("peripheral.state is not disconnected.");
             }
 
-            peripheral.SetState(CBPeripheralState.connecting);
             var result = NativeMethods.cb4u_central_manager_connect_peripheral(handle, peripheral.identifier);
             if (result < 0)
             {
@@ -207,6 +206,17 @@ namespace CoreBluetooth
             }
         }
 
+        CBPeripheralState IPeripheralNativeMethods.GetPeripheralState(CBPeripheral peripheral)
+        {
+            var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle,peripheral.identifier);
+
+            if (stateInt < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute get peripheral state.");
+            }
+            return (CBPeripheralState)stateInt;
+        }
+
         CBCharacteristicProperties ICharacteristicNativeMethods.GetCharacteristicProperties(CBCharacteristic characteristic)
         {
             var propertiesInt = NativeMethods.cb4u_central_manager_characteristic_properties(
@@ -259,7 +269,7 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogError("Peripheral not found.");
                 return;
             }
-            peripheral.SetState(CBPeripheralState.connected);
+
             centralManagerDelegate?.CentralManagerDidConnectPeripheral(this, peripheral);
         }
 
@@ -270,7 +280,7 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogError("Peripheral not found.");
                 return;
             }
-            peripheral.SetState(CBPeripheralState.disconnected);
+
             centralManagerDelegate?.CentralManagerDidFailToConnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
@@ -281,7 +291,7 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogError("Peripheral not found.");
                 return;
             }
-            peripheral.SetState(CBPeripheralState.disconnected);
+
             centralManagerDelegate?.CentralManagerDidDisconnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
