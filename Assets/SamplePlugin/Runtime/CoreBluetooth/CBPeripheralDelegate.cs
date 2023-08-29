@@ -8,8 +8,7 @@ namespace CoreBluetooth
         void DidWriteValue(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error);
         void DidUpdateNotificationState(CBPeripheral peripheral, CBCharacteristic characteristic, CBError error);
         // void DidDiscoverDescriptors(CBPeripheral peripheral, CBCharacteristic characteristic, NSError error);
-        void DidUpdateRSSI(CBPeripheral peripheral, CBError error); // for macOS
-        void DidReadRSSI(CBPeripheral peripheral, int rssi, CBError error);  // for iOS
+        void DidReadRSSI(CBPeripheral peripheral, int rssi, CBError error);
         // void DidDiscoverIncludedServices(CBPeripheral peripheral, CBService service, NSError error);
         // void DidModifyServices(CBPeripheral peripheral, NSArray services);
     }

@@ -31,7 +31,6 @@ namespace CoreBluetooth
         internal delegate void CB4UPeripheralDidUpdateValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode);
         internal delegate void CB4UPeripheralDidWriteValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode);
         internal delegate void CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode);
-        internal delegate void CB4UPeripheralDidUpdateRSSIHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode);
         internal delegate void CB4UPeripheralDidReadRSSIHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int rssi, int errorCode);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -47,7 +46,6 @@ namespace CoreBluetooth
             CB4UPeripheralDidUpdateValueForCharacteristicHandler didUpdateValueForCharacteristicHandler,
             CB4UPeripheralDidWriteValueForCharacteristicHandler didWriteValueForCharacteristicHandler,
             CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler didUpdateNotificationStateForCharacteristicHandler,
-            CB4UPeripheralDidUpdateRSSIHandler didUpdateRSSIHandler,
             CB4UPeripheralDidReadRSSIHandler didReadRSSIHandler
         );
 

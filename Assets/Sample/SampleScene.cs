@@ -199,16 +199,6 @@ public class SampleScene : MonoBehaviour
             }
         }
 
-        public void DidUpdateRSSI(CBPeripheral peripheral, CBError error)
-        {
-            Debug.Log($"DidUpdateRSSI: {peripheral}");
-            if (error != null)
-            {
-                Debug.Log($"Error: {error}");
-                return;
-            }
-        }
-
         public void DidReadRSSI(CBPeripheral peripheral, int rssi, CBError error)
         {
             Debug.Log($"DidReadRSSI: rssi = {rssi}, {peripheral}");

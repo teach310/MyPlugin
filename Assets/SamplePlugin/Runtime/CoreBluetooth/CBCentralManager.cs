@@ -418,17 +418,6 @@ namespace CoreBluetooth
             peripheral.OnDidUpdateNotificationStateForCharacteristic(characteristic, isNotifying, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidUpdateRSSI(IntPtr peripheralIdPtr, int errorCode)
-        {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
-            peripheral.OnDidUpdateRSSI(CBError.CreateOrNullFromCode(errorCode));
-        }
-
         void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
@@ -455,7 +444,6 @@ namespace CoreBluetooth
                     OnDidUpdateValueForCharacteristic,
                     OnDidWriteValueForCharacteristic,
                     OnDidUpdateNotificationStateForCharacteristic,
-                    OnDidUpdateRSSI,
                     OnDidReadRSSI
                 );
             }
@@ -529,12 +517,6 @@ namespace CoreBluetooth
             internal static void OnDidUpdateNotificationStateForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateNotificationStateForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, notificationState, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateRSSIHandler))]
-            internal static void OnDidUpdateRSSI(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateRSSI(peripheralIdPtr, errorCode));
             }
 
             [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidReadRSSIHandler))]

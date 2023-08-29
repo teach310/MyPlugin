@@ -96,7 +96,6 @@ namespace CoreBluetooth
         }
 
         public void ReadRSSI() => nativeMethods.ReadRSSI(this);
-        internal void OnDidUpdateRSSI(CBError error) => peripheralDelegate?.DidUpdateRSSI(this, error);
         internal void OnDidReadRSSI(int rssi, CBError error) => peripheralDelegate?.DidReadRSSI(this, rssi, error);
     }
 
