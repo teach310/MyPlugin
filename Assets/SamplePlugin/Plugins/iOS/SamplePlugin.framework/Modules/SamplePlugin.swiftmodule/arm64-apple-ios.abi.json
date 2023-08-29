@@ -5388,6 +5388,484 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "didUpdateRSSIHandler",
+            "printedName": "didUpdateRSSIHandler",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafeRawPointer",
+                            "printedName": "Swift.UnsafeRawPointer",
+                            "usr": "s:SV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafePointer",
+                            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int8",
+                                "printedName": "Swift.Int8",
+                                "usr": "s:s4Int8V"
+                              }
+                            ],
+                            "usr": "s:SP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int32",
+                            "printedName": "Swift.Int32",
+                            "usr": "s:s5Int32V"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvp",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvs",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvs",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvM",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvM",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "didReadRSSIHandler",
+            "printedName": "didReadRSSIHandler",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafeRawPointer",
+                            "printedName": "Swift.UnsafeRawPointer",
+                            "usr": "s:SV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "UnsafePointer",
+                            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int8",
+                                "printedName": "Swift.Int8",
+                                "usr": "s:s4Int8V"
+                              }
+                            ],
+                            "usr": "s:SP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int32",
+                            "printedName": "Swift.Int32",
+                            "usr": "s:s5Int32V"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int32",
+                            "printedName": "Swift.Int32",
+                            "usr": "s:s5Int32V"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvp",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafeRawPointer",
+                                "printedName": "Swift.UnsafeRawPointer",
+                                "usr": "s:SV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "UnsafePointer",
+                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Int8",
+                                    "printedName": "Swift.Int8",
+                                    "usr": "s:s4Int8V"
+                                  }
+                                ],
+                                "usr": "s:SP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int32",
+                                "printedName": "Swift.Int32",
+                                "usr": "s:s5Int32V"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvs",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvs",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvM",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18didReadRSSIHandlerySV_SPys4Int8VGs5Int32VAItXCSgvM",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -6014,6 +6492,34 @@
           },
           {
             "kind": "Function",
+            "name": "readRSSI",
+            "printedName": "readRSSI(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC8readRSSIys5Int32VSSF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC8readRSSIys5Int32VSSF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "centralManagerDidUpdateState",
             "printedName": "centralManagerDidUpdateState(_:)",
             "children": [
@@ -6477,6 +6983,98 @@
           },
           {
             "kind": "Function",
+            "name": "peripheralDidUpdateRSSI",
+            "printedName": "peripheralDidUpdateRSSI(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheralDidUpdateRSSI:error:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC23peripheralDidUpdateRSSI_5errorySo12CBPeripheralC_s5Error_pSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "peripheralDidUpdateRSSI:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didReadRSSI:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSNumber",
+                "printedName": "Foundation.NSNumber",
+                "usr": "c:objc(cs)NSNumber"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didReadRSSI:error:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_11didReadRSSI5errorySo12CBPeripheralC_So8NSNumberCs5Error_pSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "peripheral:didReadRSSI:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "errorToCode",
             "printedName": "errorToCode(_:)",
             "children": [
@@ -6645,7 +7243,7 @@
       {
         "kind": "Function",
         "name": "cb4u_central_manager_register_handlers",
-        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:_:_:_:_:_:)",
+        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -7247,11 +7845,107 @@
                 ]
               }
             ]
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeRawPointer",
+                    "printedName": "Swift.UnsafeRawPointer",
+                    "usr": "s:SV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafePointer",
+                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int8",
+                        "printedName": "Swift.Int8",
+                        "usr": "s:s4Int8V"
+                      }
+                    ],
+                    "usr": "s:SP"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "TypeFunc",
+            "name": "Function",
+            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Tuple",
+                "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafeRawPointer",
+                    "printedName": "Swift.UnsafeRawPointer",
+                    "usr": "s:SV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnsafePointer",
+                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int8",
+                        "printedName": "Swift.Int8",
+                        "usr": "s:s4Int8V"
+                      }
+                    ],
+                    "usr": "s:SP"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)cb4u_central_manager_register_handlers:::::::::::",
-        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCySV_A2gDtXCySV_A3gDtXCySV_A3GSPys5UInt8VGA2DtXCySV_A3gDtXCySV_A3g2DtXCtF",
+        "usr": "c:(cm)cb4u_central_manager_register_handlers:::::::::::::",
+        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCySV_A2gDtXCySV_A3gDtXCySV_A3GSPys5UInt8VGA2DtXCySV_A3gDtXCySV_A3g2DtXCySV_AgDtXCySV_Ag2DtXCtF",
         "moduleName": "SamplePlugin",
         "declAttributes": [
           "AccessControl",
@@ -8132,6 +8826,48 @@
         "funcSelfKind": "NonMutating"
       },
       {
+        "kind": "Function",
+        "name": "cb4u_central_manager_peripheral_read_rssi",
+        "printedName": "cb4u_central_manager_peripheral_read_rssi(_:_:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafeRawPointer",
+            "printedName": "Swift.UnsafeRawPointer",
+            "usr": "s:SV"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "UnsafePointer",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "usr": "s:SP"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)cb4u_central_manager_peripheral_read_rssi::",
+        "mangledName": "$s12SamplePlugin41cb4u_central_manager_peripheral_read_rssiys5Int32VSV_SPys4Int8VGtF",
+        "moduleName": "SamplePlugin",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -8979,371 +9715,385 @@
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1822,
+      "offset": 1950,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1845,
+      "offset": 1973,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 1969,
+      "offset": 2097,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2108,
+      "offset": 2236,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2140,
+      "offset": 2268,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2414,
+      "offset": 2542,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2622,
+      "offset": 2750,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2712,
+      "offset": 2840,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2820,
+      "offset": 2948,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2852,
+      "offset": 2980,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2984,
+      "offset": 3112,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3143,
+      "offset": 3271,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 3501,
+      "offset": 3629,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 3996,
+      "offset": 4124,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4067,
+      "offset": 4195,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4237,
+      "offset": 4365,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4327,
+      "offset": 4455,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4544,
+      "offset": 4672,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4682,
+      "offset": 4810,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 4838,
+      "offset": 4966,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5093,
+      "offset": 5221,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5171,
+      "offset": 5299,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5395,
+      "offset": 5523,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5524,
+      "offset": 5652,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5630,
+      "offset": 5758,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5836,
+      "offset": 5964,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 5965,
+      "offset": 6093,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6112,
+      "offset": 6240,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6190,
+      "offset": 6318,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6446,
+      "offset": 6574,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6575,
+      "offset": 6703,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6722,
+      "offset": 6850,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 6828,
+      "offset": 6956,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7056,
+      "offset": 7184,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7185,
+      "offset": 7313,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7332,
+      "offset": 7460,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 7424,
+      "offset": 7552,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7704,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7762,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 8023,
+      "offset": 8361,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9459,
+      "offset": 9797,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9467,
+      "offset": 9805,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 10129,
+      "offset": 10467,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 10137,
+      "offset": 10475,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 10834,
+      "offset": 11172,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 11827,
+      "offset": 12165,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 12557,
+      "offset": 12895,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 12684,
+      "offset": 13022,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 12688,
+      "offset": 13026,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 13293,
+      "offset": 14292,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 4582,
+      "offset": 5091,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 4931,
+      "offset": 5440,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 5464,
+      "offset": 5973,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 8602,
+      "offset": 9111,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 9378,
+      "offset": 9887,
       "length": 1,
       "value": "0"
     },
