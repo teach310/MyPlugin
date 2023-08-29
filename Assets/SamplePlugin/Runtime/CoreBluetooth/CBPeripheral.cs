@@ -11,6 +11,7 @@ namespace CoreBluetooth
         void ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic);
         void WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type);
         void SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled);
+        void ReadRSSI(CBPeripheral peripheral);
         CBPeripheralState GetPeripheralState(CBPeripheral peripheral);
     }
 
@@ -93,6 +94,10 @@ namespace CoreBluetooth
             characteristic.SetIsNotifying(isNotifying);
             peripheralDelegate?.DidUpdateNotificationState(this, characteristic, error);
         }
+
+        public void ReadRSSI() => nativeMethods.ReadRSSI(this);
+        internal void OnDidUpdateRSSI(CBError error) => peripheralDelegate?.DidUpdateRSSI(this, error);
+        internal void OnDidReadRSSI(int rssi, CBError error) => peripheralDelegate?.DidReadRSSI(this, rssi, error);
     }
 
     // https://developer.apple.com/documentation/corebluetooth/cbperipheralstate

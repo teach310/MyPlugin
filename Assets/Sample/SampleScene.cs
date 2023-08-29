@@ -79,16 +79,16 @@ public class SampleScene : MonoBehaviour
                     Debug.Log("Peripheral not found.");
                     return;
                 }
-                foreach (var peripheral in result)
-                {
-                    Debug.Log($"RetrievePeripheralsWithIdentifiers: {peripheral}");
-                    this.peripheral = peripheral;
-                    peripheral.peripheralDelegate = this;
-                    central.Connect(peripheral);
-                    Debug.Log($"Try Connect: {peripheral}");
-                    central.CancelPeripheralConnection(peripheral);
-                    Debug.Log($"Try CancelPeripheralConnection: {peripheral}");
-                }
+                // foreach (var peripheral in result)
+                // {
+                //     Debug.Log($"RetrievePeripheralsWithIdentifiers: {peripheral}");
+                //     this.peripheral = peripheral;
+                //     peripheral.peripheralDelegate = this;
+                //     central.Connect(peripheral);
+                //     Debug.Log($"Try Connect: {peripheral}");
+                //     central.CancelPeripheralConnection(peripheral);
+                //     Debug.Log($"Try CancelPeripheralConnection: {peripheral}");
+                // }
             }
         }
 
@@ -198,6 +198,37 @@ public class SampleScene : MonoBehaviour
                 return;
             }
         }
+
+        public void DidUpdateRSSI(CBPeripheral peripheral, CBError error)
+        {
+            Debug.Log($"DidUpdateRSSI: {peripheral}");
+            if (error != null)
+            {
+                Debug.Log($"Error: {error}");
+                return;
+            }
+        }
+
+        public void DidReadRSSI(CBPeripheral peripheral, int rssi, CBError error)
+        {
+            Debug.Log($"DidReadRSSI: rssi = {rssi}, {peripheral}");
+            if (error != null)
+            {
+                Debug.Log($"Error: {error}");
+                return;
+            }
+        }
+
+        public void ReadRSSI()
+        {
+            if (peripheral == null)
+            {
+                Debug.Log("Peripheral is null.");
+                return;
+            }
+
+            peripheral.ReadRSSI();
+        }
     }
 
     BLESample ble;
@@ -218,6 +249,11 @@ public class SampleScene : MonoBehaviour
         {
             ble.Scan();
         }
+    }
+
+    public void OnClick2()
+    {
+        ble.ReadRSSI();
     }
 
     void OnDestroy()

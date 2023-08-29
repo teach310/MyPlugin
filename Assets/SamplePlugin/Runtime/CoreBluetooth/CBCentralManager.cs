@@ -215,6 +215,19 @@ namespace CoreBluetooth
             }
         }
 
+        void IPeripheralNativeMethods.ReadRSSI(CBPeripheral peripheral)
+        {
+            int result = NativeMethods.cb4u_central_manager_peripheral_read_rssi(
+                handle,
+                peripheral.identifier
+            );
+
+            if (result < 0)
+            {
+                UnityEngine.Debug.LogError("Failed to execute read RSSI.");
+            }
+        }
+
         CBPeripheralState IPeripheralNativeMethods.GetPeripheralState(CBPeripheral peripheral)
         {
             var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle,peripheral.identifier);
@@ -405,6 +418,27 @@ namespace CoreBluetooth
             peripheral.OnDidUpdateNotificationStateForCharacteristic(characteristic, isNotifying, CBError.CreateOrNullFromCode(errorCode));
         }
 
+        void OnDidUpdateRSSI(IntPtr peripheralIdPtr, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+
+            peripheral.OnDidUpdateRSSI(CBError.CreateOrNullFromCode(errorCode));
+        }
+
+        void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
+        {
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
+            {
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return;
+            }
+            peripheral.OnDidReadRSSI(rssi, CBError.CreateOrNullFromCode(errorCode));
+        }
+
         static class CentralEventHandler
         {
             internal static void Register(IntPtr centralPtr)
@@ -420,7 +454,9 @@ namespace CoreBluetooth
                     OnDidDiscoverCharacteristics,
                     OnDidUpdateValueForCharacteristic,
                     OnDidWriteValueForCharacteristic,
-                    OnDidUpdateNotificationStateForCharacteristic
+                    OnDidUpdateNotificationStateForCharacteristic,
+                    OnDidUpdateRSSI,
+                    OnDidReadRSSI
                 );
             }
 
@@ -493,6 +529,18 @@ namespace CoreBluetooth
             internal static void OnDidUpdateNotificationStateForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
             {
                 CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateNotificationStateForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, notificationState, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateRSSIHandler))]
+            internal static void OnDidUpdateRSSI(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateRSSI(peripheralIdPtr, errorCode));
+            }
+
+            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidReadRSSIHandler))]
+            internal static void OnDidReadRSSI(IntPtr centralPtr, IntPtr peripheralIdPtr, int rssi, int errorCode)
+            {
+                CallInstanceMethod(centralPtr, instance => instance.OnDidReadRSSI(peripheralIdPtr, rssi, errorCode));
             }
         }
     }

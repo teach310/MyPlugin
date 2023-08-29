@@ -31,6 +31,8 @@ namespace CoreBluetooth
         internal delegate void CB4UPeripheralDidUpdateValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode);
         internal delegate void CB4UPeripheralDidWriteValueForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode);
         internal delegate void CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode);
+        internal delegate void CB4UPeripheralDidUpdateRSSIHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode);
+        internal delegate void CB4UPeripheralDidReadRSSIHandler(IntPtr centralPtr, IntPtr peripheralIdPtr, int rssi, int errorCode);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_register_handlers(
@@ -44,7 +46,9 @@ namespace CoreBluetooth
             CB4UPeripheralDidDiscoverCharacteristicsHandler didDiscoverCharacteristicsHandler,
             CB4UPeripheralDidUpdateValueForCharacteristicHandler didUpdateValueForCharacteristicHandler,
             CB4UPeripheralDidWriteValueForCharacteristicHandler didWriteValueForCharacteristicHandler,
-            CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler didUpdateNotificationStateForCharacteristicHandler
+            CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler didUpdateNotificationStateForCharacteristicHandler,
+            CB4UPeripheralDidUpdateRSSIHandler didUpdateRSSIHandler,
+            CB4UPeripheralDidReadRSSIHandler didReadRSSIHandler
         );
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
@@ -81,6 +85,9 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_central_manager_peripheral_state(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int cb4u_central_manager_peripheral_read_rssi(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
         // characteristicなため名前central_managerではなくperipheralの方が適切な気はする。
         // しかし、peripheral_managerと区別するためにcentral_managerに寄せた方がいい気もする。
