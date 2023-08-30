@@ -7,25 +7,43 @@ using System.Text;
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager
-    public class CBCentralManager : SafeHandle, ICharacteristicNativeMethods, IPeripheralNativeMethods
+    public class CBCentralManager : ICharacteristicNativeMethods, IPeripheralNativeMethods, IDisposable
     {
-        static readonly Dictionary<IntPtr, CBCentralManager> instanceMap = new Dictionary<IntPtr, CBCentralManager>();
+        bool disposed = false;
+
+        SafeCB4UCentralManagerHandle handle;
         // key: peripheralId, value: CBPeripheral
         Dictionary<string, CBPeripheral> peripherals = new Dictionary<string, CBPeripheral>();
 
-        public override bool IsInvalid => handle == IntPtr.Zero;
+        CBCentralManager() { }
 
-        CBCentralManager(IntPtr handle) : base(IntPtr.Zero, true)
+        ~CBCentralManager() => Dispose(false);
+
+        // NOTE: options is not implemented yet.
+        // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1519001-init
+        public static CBCentralManager Create(CBCentralManagerDelegate centralManagerDelegate = null)
         {
-            this.handle = handle;
-            instanceMap.Add(handle, this);
+            var instance = new CBCentralManager();
+            instance.handle = SafeCB4UCentralManagerHandle.Create(instance);
+
+            instance.centralManagerDelegate = centralManagerDelegate;
+            CentralEventHandler.Register(instance.handle);
+            return instance;
         }
 
-        protected override bool ReleaseHandle()
+        public void Dispose()
         {
-            instanceMap.Remove(handle);
-            NativeMethods.cb4u_central_manager_release(handle);
-            return true;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                handle.Dispose();
+                disposed = true;
+            }
         }
 
         public CBManagerState state { get; private set; } = CBManagerState.unknown;
@@ -230,7 +248,7 @@ namespace CoreBluetooth
 
         CBPeripheralState IPeripheralNativeMethods.GetPeripheralState(CBPeripheral peripheral)
         {
-            var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle,peripheral.identifier);
+            var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle, peripheral.identifier);
 
             if (stateInt < 0)
             {
@@ -253,17 +271,6 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogError("Failed to execute get characteristic properties.");
             }
             return (CBCharacteristicProperties)propertiesInt;
-        }
-
-        // NOTE: options is not implemented yet.
-        // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1519001-init
-        public static CBCentralManager Create(CBCentralManagerDelegate centralManagerDelegate = null)
-        {
-            var handle = NativeMethods.cb4u_central_manager_new();
-            var instance = new CBCentralManager(handle);
-            instance.centralManagerDelegate = centralManagerDelegate;
-            CentralEventHandler.Register(handle);
-            return instance;
         }
 
         void OnDidUpdateState(CBManagerState state)
@@ -430,7 +437,7 @@ namespace CoreBluetooth
 
         static class CentralEventHandler
         {
-            internal static void Register(IntPtr centralPtr)
+            internal static void Register(SafeCB4UCentralManagerHandle centralPtr)
             {
                 NativeMethods.cb4u_central_manager_register_handlers(
                     centralPtr,
@@ -450,7 +457,7 @@ namespace CoreBluetooth
 
             static void CallInstanceMethod(IntPtr centralPtr, Action<CBCentralManager> action)
             {
-                if (!instanceMap.TryGetValue(centralPtr, out var instance))
+                if (!SafeCB4UCentralManagerHandle.TryGetCBCentralManager(centralPtr, out var instance))
                 {
                     UnityEngine.Debug.LogError("CBCentralManager instance not found.");
                     return;
