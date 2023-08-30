@@ -25,9 +25,7 @@ namespace CoreBluetooth
         {
             var instance = new CBCentralManager();
             instance.handle = SafeCB4UCentralManagerHandle.Create(instance);
-
             instance.centralManagerDelegate = centralManagerDelegate;
-            CentralEventHandler.Register(instance.handle);
             return instance;
         }
 
@@ -273,13 +271,13 @@ namespace CoreBluetooth
             return (CBCharacteristicProperties)propertiesInt;
         }
 
-        void OnDidUpdateState(CBManagerState state)
+        internal void OnDidUpdateState(CBManagerState state)
         {
             this.state = state;
             centralManagerDelegate?.CentralManagerDidUpdateState(this);
         }
 
-        void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
+        internal void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
             var peripheral = new CBPeripheral(
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
@@ -291,7 +289,7 @@ namespace CoreBluetooth
             centralManagerDelegate?.CentralManagerDidDiscoverPeripheral(this, peripheral);
         }
 
-        void OnDidConnectPeripheral(IntPtr peripheralIdPtr)
+        internal void OnDidConnectPeripheral(IntPtr peripheralIdPtr)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -302,7 +300,7 @@ namespace CoreBluetooth
             centralManagerDelegate?.CentralManagerDidConnectPeripheral(this, peripheral);
         }
 
-        void OnDidFailToConnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
+        internal void OnDidFailToConnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -313,7 +311,7 @@ namespace CoreBluetooth
             centralManagerDelegate?.CentralManagerDidFailToConnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidDisconnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
+        internal void OnDidDisconnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -324,7 +322,7 @@ namespace CoreBluetooth
             centralManagerDelegate?.CentralManagerDidDisconnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidDiscoverServices(IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
+        internal void OnDidDiscoverServices(IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -346,7 +344,7 @@ namespace CoreBluetooth
 
         }
 
-        void OnDidDiscoverCharacteristics(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
+        internal void OnDidDiscoverCharacteristics(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -375,7 +373,7 @@ namespace CoreBluetooth
             peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidUpdateValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
+        internal void OnDidUpdateValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -393,7 +391,7 @@ namespace CoreBluetooth
             peripheral.OnDidUpdateValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidWriteValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
+        internal void OnDidWriteValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -408,7 +406,7 @@ namespace CoreBluetooth
             peripheral.OnDidWriteValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidUpdateNotificationStateForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
+        internal void OnDidUpdateNotificationStateForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -425,7 +423,7 @@ namespace CoreBluetooth
             peripheral.OnDidUpdateNotificationStateForCharacteristic(characteristic, isNotifying, CBError.CreateOrNullFromCode(errorCode));
         }
 
-        void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
+        internal void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
         {
             if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
@@ -433,104 +431,6 @@ namespace CoreBluetooth
                 return;
             }
             peripheral.OnDidReadRSSI(rssi, CBError.CreateOrNullFromCode(errorCode));
-        }
-
-        static class CentralEventHandler
-        {
-            internal static void Register(SafeCB4UCentralManagerHandle centralPtr)
-            {
-                NativeMethods.cb4u_central_manager_register_handlers(
-                    centralPtr,
-                    OnDidUpdateState,
-                    OnDidDiscoverPeripheral,
-                    OnDidConnectPeripheral,
-                    OnDidFailToConnectPeripheral,
-                    OnDidDisconnectPeripheral,
-                    OnDidDiscoverServices,
-                    OnDidDiscoverCharacteristics,
-                    OnDidUpdateValueForCharacteristic,
-                    OnDidWriteValueForCharacteristic,
-                    OnDidUpdateNotificationStateForCharacteristic,
-                    OnDidReadRSSI
-                );
-            }
-
-            static void CallInstanceMethod(IntPtr centralPtr, Action<CBCentralManager> action)
-            {
-                if (!SafeCB4UCentralManagerHandle.TryGetCBCentralManager(centralPtr, out var instance))
-                {
-                    UnityEngine.Debug.LogError("CBCentralManager instance not found.");
-                    return;
-                }
-
-                action(instance);
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidUpdateStateHandler))]
-            internal static void OnDidUpdateState(IntPtr centralPtr, CBManagerState state)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateState(state));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidDiscoverPeripheralHandler))]
-            internal static void OnDidDiscoverPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverPeripheral(peripheralIdPtr, peripheralNamePtr));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidConnectPeripheralHandler))]
-            internal static void OnDidConnectPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidConnectPeripheral(peripheralIdPtr));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidFailToConnectPeripheralHandler))]
-            internal static void OnDidFailToConnectPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidFailToConnectPeripheral(peripheralIdPtr, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UCentralManagerDidDisconnectPeripheralHandler))]
-            internal static void OnDidDisconnectPeripheral(IntPtr centralPtr, IntPtr peripheralIdPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidDisconnectPeripheral(peripheralIdPtr, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidDiscoverServicesHandler))]
-            internal static void OnDidDiscoverServices(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverServices(peripheralIdPtr, commaSeparatedServiceIdsPtr, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidDiscoverCharacteristicsHandler))]
-            internal static void OnDidDiscoverCharacteristics(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidDiscoverCharacteristics(peripheralIdPtr, serviceIdPtr, commaSeparatedCharacteristicIdsPtr, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateValueForCharacteristicHandler))]
-            internal static void OnDidUpdateValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, valuePtr, valueLength, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidWriteValueForCharacteristicHandler))]
-            internal static void OnDidWriteValueForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidWriteValueForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidUpdateNotificationStateForCharacteristicHandler))]
-            internal static void OnDidUpdateNotificationStateForCharacteristic(IntPtr centralPtr, IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidUpdateNotificationStateForCharacteristic(peripheralIdPtr, serviceIdPtr, characteristicIdPtr, notificationState, errorCode));
-            }
-
-            [AOT.MonoPInvokeCallback(typeof(NativeMethods.CB4UPeripheralDidReadRSSIHandler))]
-            internal static void OnDidReadRSSI(IntPtr centralPtr, IntPtr peripheralIdPtr, int rssi, int errorCode)
-            {
-                CallInstanceMethod(centralPtr, instance => instance.OnDidReadRSSI(peripheralIdPtr, rssi, errorCode));
-            }
         }
     }
 }
