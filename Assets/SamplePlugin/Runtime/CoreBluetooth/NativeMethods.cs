@@ -35,7 +35,7 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_register_handlers(
-            IntPtr centralPtr,
+            SafeCB4UCentralManagerHandle centralPtr,
             CB4UCentralManagerDidUpdateStateHandler didUpdateStateHandler,
             CB4UCentralManagerDidDiscoverPeripheralHandler didDiscoverPeripheralHandler,
             CB4UCentralManagerDidConnectPeripheralHandler didConnectPeripheralHandler,
@@ -51,7 +51,7 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int cb4u_central_manager_retrieve_peripherals_with_identifiers(
-            IntPtr centralPtr,
+            SafeCB4UCentralManagerHandle centralPtr,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 2)] string[] peripheralIds,
             int peripheralIdsCount,
             [MarshalAs(UnmanagedType.LPStr), Out] StringBuilder sb,
@@ -60,52 +60,52 @@ namespace CoreBluetooth
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void cb4u_central_manager_scan_for_peripherals(
-            IntPtr centralPtr,
+            SafeCB4UCentralManagerHandle centralPtr,
             [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 2)] string[] serviceUUIDs,
             int serviceUUIDsCount
         );
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern void cb4u_central_manager_stop_scan(IntPtr centralPtr);
+        internal static extern void cb4u_central_manager_stop_scan(SafeCB4UCentralManagerHandle centralPtr);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool cb4u_central_manager_is_scanning(IntPtr centralPtr);
+        internal static extern bool cb4u_central_manager_is_scanning(SafeCB4UCentralManagerHandle centralPtr);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_connect_peripheral(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+        internal static extern int cb4u_central_manager_connect_peripheral(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_cancel_peripheral_connection(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+        internal static extern int cb4u_central_manager_cancel_peripheral_connection(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_peripheral_name(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), Out] StringBuilder sb, int sbSize);
+        internal static extern int cb4u_central_manager_peripheral_name(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), Out] StringBuilder sb, int sbSize);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_peripheral_state(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+        internal static extern int cb4u_central_manager_peripheral_state(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_peripheral_read_rssi(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
+        internal static extern int cb4u_central_manager_peripheral_read_rssi(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId);
 
         // characteristicなため名前central_managerではなくperipheralの方が適切な気はする。
         // しかし、peripheral_managerと区別するためにcentral_managerに寄せた方がいい気もする。
         // とりあえずcentral_managerに寄せておいてあとで検討する。
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_central_manager_characteristic_properties(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
+        internal static extern int cb4u_central_manager_characteristic_properties(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_peripheral_discover_services(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 3)] string[] serviceUUIDs, int serviceUUIDsCount);
+        internal static extern int cb4u_peripheral_discover_services(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 3)] string[] serviceUUIDs, int serviceUUIDsCount);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_peripheral_discover_characteristics(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] characteristicUUIDs, int characteristicUUIDsCount);
+        internal static extern int cb4u_peripheral_discover_characteristics(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeParamIndex = 4)] string[] characteristicUUIDs, int characteristicUUIDsCount);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_peripheral_read_value_for_characteristic(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
+        internal static extern int cb4u_peripheral_read_value_for_characteristic(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_peripheral_write_value_for_characteristic(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 5)] byte[] dataBytes, int dataLength, int writeType);
+        internal static extern int cb4u_peripheral_write_value_for_characteristic(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 5)] byte[] dataBytes, int dataLength, int writeType);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int cb4u_peripheral_set_notify_value_for_characteristic(IntPtr centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId, [MarshalAs(UnmanagedType.I1)] bool enabled);
+        internal static extern int cb4u_peripheral_set_notify_value_for_characteristic(SafeCB4UCentralManagerHandle centralPtr, [MarshalAs(UnmanagedType.LPStr), In] string peripheralId, [MarshalAs(UnmanagedType.LPStr), In] string serviceId, [MarshalAs(UnmanagedType.LPStr), In] string characteristicId, [MarshalAs(UnmanagedType.I1)] bool enabled);
     }
 }
