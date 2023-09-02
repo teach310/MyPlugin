@@ -51,24 +51,6 @@ namespace CoreBluetooth
         public CBManagerState state { get; private set; } = CBManagerState.unknown;
         public CBCentralManagerDelegate centralManagerDelegate { get; set; }
 
-        string GetPeripheralName(string peripheralId)
-        {
-            var sb = new StringBuilder(256);
-            var result = NativeMethods.cb4u_central_manager_peripheral_name(
-                handle,
-                peripheralId,
-                sb,
-                sb.Capacity
-            );
-
-            if (result < 0)
-            {
-                return string.Empty;
-            }
-
-            return sb.ToString();
-        }
-
         CBPeripheral GetOrCreatePeripheral(string peripheralId)
         {
             if (peripherals.TryGetValue(peripheralId, out var peripheral))
@@ -77,7 +59,7 @@ namespace CoreBluetooth
             }
             else
             {
-                return new CBPeripheral(peripheralId, GetPeripheralName(peripheralId), nativePeripheralProxy);
+                return new CBPeripheral(peripheralId, nativePeripheralProxy.Name(peripheralId), nativePeripheralProxy);
             }
         }
 

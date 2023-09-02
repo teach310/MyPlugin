@@ -1,12 +1,32 @@
+using System.Text;
+
 namespace CoreBluetooth
 {
     internal class NativePeripheralProxy : IPeripheralNativeMethods
     {
         readonly SafeCB4UCentralManagerHandle nativeCentralManagerHandle;
 
-        public NativePeripheralProxy(SafeCB4UCentralManagerHandle nativeCentralManagerHandle)
+        internal NativePeripheralProxy(SafeCB4UCentralManagerHandle nativeCentralManagerHandle)
         {
             this.nativeCentralManagerHandle = nativeCentralManagerHandle;
+        }
+
+        internal string Name(string peripheralId)
+        {
+            var sb = new StringBuilder(256);
+            var result = NativeMethods.cb4u_central_manager_peripheral_name(
+                nativeCentralManagerHandle,
+                peripheralId,
+                sb,
+                sb.Capacity
+            );
+
+            if (result < 0)
+            {
+                return string.Empty;
+            }
+
+            return sb.ToString();
         }
 
         void IPeripheralNativeMethods.DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
