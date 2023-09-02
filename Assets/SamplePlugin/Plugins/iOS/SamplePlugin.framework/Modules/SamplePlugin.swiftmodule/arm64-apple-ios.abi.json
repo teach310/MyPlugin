@@ -2650,6 +2650,20 @@
       },
       {
         "kind": "Import",
+        "name": "CoreBluetooth",
+        "printedName": "CoreBluetooth",
+        "declKind": "Import",
+        "moduleName": "SamplePlugin"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreBluetooth",
+        "printedName": "CoreBluetooth",
+        "declKind": "Import",
+        "moduleName": "SamplePlugin"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -2667,6 +2681,137 @@
         "name": "CB4UCentralManager",
         "printedName": "CB4UCentralManager",
         "children": [
+          {
+            "kind": "Var",
+            "name": "peripherals",
+            "printedName": "peripherals",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : CoreBluetooth.CBPeripheral]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CBPeripheral",
+                    "printedName": "CoreBluetooth.CBPeripheral",
+                    "usr": "c:objc(cs)CBPeripheral"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvp",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : CoreBluetooth.CBPeripheral]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CBPeripheral",
+                        "printedName": "CoreBluetooth.CBPeripheral",
+                        "usr": "c:objc(cs)CBPeripheral"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : CoreBluetooth.CBPeripheral]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CBPeripheral",
+                        "printedName": "CoreBluetooth.CBPeripheral",
+                        "usr": "c:objc(cs)CBPeripheral"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvs",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvs",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvM",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11peripheralsSDySSSo12CBPeripheralCGvM",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
           {
             "kind": "Var",
             "name": "didUpdateStateHandler",
@@ -5389,236 +5534,6 @@
           },
           {
             "kind": "Var",
-            "name": "didUpdateRSSIHandler",
-            "printedName": "didUpdateRSSIHandler",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "UnsafeRawPointer",
-                            "printedName": "Swift.UnsafeRawPointer",
-                            "usr": "s:SV"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "UnsafePointer",
-                            "printedName": "Swift.UnsafePointer<Swift.Int8>",
-                            "children": [
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Int8",
-                                "printedName": "Swift.Int8",
-                                "usr": "s:s4Int8V"
-                              }
-                            ],
-                            "usr": "s:SP"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int32",
-                            "printedName": "Swift.Int32",
-                            "usr": "s:s5Int32V"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvp",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvp",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
-                    "children": [
-                      {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Tuple",
-                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
-                            "children": [
-                              {
-                                "kind": "TypeNominal",
-                                "name": "UnsafeRawPointer",
-                                "printedName": "Swift.UnsafeRawPointer",
-                                "usr": "s:SV"
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "UnsafePointer",
-                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "Int8",
-                                    "printedName": "Swift.Int8",
-                                    "usr": "s:s4Int8V"
-                                  }
-                                ],
-                                "usr": "s:SP"
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Int32",
-                                "printedName": "Swift.Int32",
-                                "usr": "s:s5Int32V"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvg",
-                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvg",
-                "moduleName": "SamplePlugin",
-                "implicit": true,
-                "isOpen": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "((Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ())?",
-                    "children": [
-                      {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Tuple",
-                            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
-                            "children": [
-                              {
-                                "kind": "TypeNominal",
-                                "name": "UnsafeRawPointer",
-                                "printedName": "Swift.UnsafeRawPointer",
-                                "usr": "s:SV"
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "UnsafePointer",
-                                "printedName": "Swift.UnsafePointer<Swift.Int8>",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "Int8",
-                                    "printedName": "Swift.Int8",
-                                    "usr": "s:s4Int8V"
-                                  }
-                                ],
-                                "usr": "s:SP"
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Int32",
-                                "printedName": "Swift.Int32",
-                                "usr": "s:s5Int32V"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvs",
-                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvs",
-                "moduleName": "SamplePlugin",
-                "implicit": true,
-                "isOpen": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvM",
-                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC20didUpdateRSSIHandlerySV_SPys4Int8VGs5Int32VtXCSgvM",
-                "moduleName": "SamplePlugin",
-                "implicit": true,
-                "isOpen": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "didReadRSSIHandler",
             "printedName": "didReadRSSIHandler",
             "children": [
@@ -5866,6 +5781,247 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "peripheralNotFound",
+            "printedName": "peripheralNotFound",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC18peripheralNotFounds5Int32Vvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18peripheralNotFounds5Int32Vvp",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC18peripheralNotFounds5Int32Vvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18peripheralNotFounds5Int32Vvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "serviceNotFound",
+            "printedName": "serviceNotFound",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC15serviceNotFounds5Int32Vvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC15serviceNotFounds5Int32Vvp",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC15serviceNotFounds5Int32Vvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC15serviceNotFounds5Int32Vvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "characteristicNotFound",
+            "printedName": "characteristicNotFound",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC22characteristicNotFounds5Int32Vvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC22characteristicNotFounds5Int32Vvp",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC22characteristicNotFounds5Int32Vvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC22characteristicNotFounds5Int32Vvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "failure",
+            "printedName": "failure",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC7failures5Int32Vvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC7failures5Int32Vvp",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC7failures5Int32Vvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC7failures5Int32Vvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "success",
+            "printedName": "success",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC7successs5Int32Vvp",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC7successs5Int32Vvp",
+            "moduleName": "SamplePlugin",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12SamplePlugin18CB4UCentralManagerC7successs5Int32Vvg",
+                "mangledName": "$s12SamplePlugin18CB4UCentralManagerC7successs5Int32Vvg",
+                "moduleName": "SamplePlugin",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -5908,6 +6064,42 @@
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11selfPointerSvyF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "errorToCode",
+            "printedName": "errorToCode(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC11errorToCodeys5Int32Vs5Error_pSgF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11errorToCodeys5Int32Vs5Error_pSgF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
             "funcSelfKind": "NonMutating"
           },
           {
@@ -5959,82 +6151,6 @@
             "declKind": "Func",
             "usr": "s:12SamplePlugin18CB4UCentralManagerC19retrievePeripherals15withIdentifiers__s5Int32VSay10Foundation4UUIDVG_Spys4Int8VGSitF",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC19retrievePeripherals15withIdentifiers__s5Int32VSay10Foundation4UUIDVG_Spys4Int8VGSitF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "peripheralName",
-            "printedName": "peripheralName(_:_:_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Int32",
-                "printedName": "Swift.Int32",
-                "usr": "s:s5Int32V"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "UnsafeMutablePointer",
-                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int8",
-                    "printedName": "Swift.Int8",
-                    "usr": "s:s4Int8V"
-                  }
-                ],
-                "usr": "s:Sp"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:12SamplePlugin18CB4UCentralManagerC14peripheralNameys5Int32VSS_Spys4Int8VGSitF",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC14peripheralNameys5Int32VSS_Spys4Int8VGSitF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "peripheralState",
-            "printedName": "peripheralState(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Int32",
-                "printedName": "Swift.Int32",
-                "usr": "s:s5Int32V"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:12SamplePlugin18CB4UCentralManagerC15peripheralStateys5Int32VSSF",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC15peripheralStateys5Int32VSSF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "declAttributes": [
@@ -6225,9 +6341,254 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "CBUUID",
+                "printedName": "CoreBluetooth.CBUUID",
+                "usr": "c:objc(cs)CBUUID"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBUUID",
+                "printedName": "CoreBluetooth.CBUUID",
+                "usr": "c:objc(cs)CBUUID"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_So6CBUUIDCAHtF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_So6CBUUIDCAHtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "delegatePeripheral",
+            "printedName": "delegatePeripheral(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CoreBluetooth.CBPeripheral) -> Swift.Int32",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CBPeripheral",
+                    "printedName": "CoreBluetooth.CBPeripheral",
+                    "usr": "c:objc(cs)CBPeripheral"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC18delegatePeripheralys5Int32VSS_AFSo12CBPeripheralCXEtF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18delegatePeripheralys5Int32VSS_AFSo12CBPeripheralCXEtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "delegatePeripheral",
+            "printedName": "delegatePeripheral(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CoreBluetooth.CBPeripheral) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CBPeripheral",
+                    "printedName": "CoreBluetooth.CBPeripheral",
+                    "usr": "c:objc(cs)CBPeripheral"
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC18delegatePeripheralys5Int32VSS_ySo12CBPeripheralCXEtF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC18delegatePeripheralys5Int32VSS_ySo12CBPeripheralCXEtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "delegatePeripheralForCharacteristic",
+            "printedName": "delegatePeripheralForCharacteristic(_:_:_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBUUID",
+                "printedName": "CoreBluetooth.CBUUID",
+                "usr": "c:objc(cs)CBUUID"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBUUID",
+                "printedName": "CoreBluetooth.CBUUID",
+                "usr": "c:objc(cs)CBUUID"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(CoreBluetooth.CBPeripheral, CoreBluetooth.CBCharacteristic) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(CoreBluetooth.CBPeripheral, CoreBluetooth.CBCharacteristic)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CBPeripheral",
+                        "printedName": "CoreBluetooth.CBPeripheral",
+                        "usr": "c:objc(cs)CBPeripheral"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CBCharacteristic",
+                        "printedName": "CoreBluetooth.CBCharacteristic",
+                        "usr": "c:objc(cs)CBCharacteristic"
+                      }
+                    ]
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC35delegatePeripheralForCharacteristicys5Int32VSS_So6CBUUIDCAHySo12CBPeripheralC_So16CBCharacteristicCtXEtF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC35delegatePeripheralForCharacteristicys5Int32VSS_So6CBUUIDCAHySo12CBPeripheralC_So16CBCharacteristicCtXEtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheralName",
+            "printedName": "peripheralName(_:_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:Sp"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC14peripheralNameys5Int32VSS_Spys4Int8VGSitF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC14peripheralNameys5Int32VSS_Spys4Int8VGSitF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheralState",
+            "printedName": "peripheralState(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
               },
               {
                 "kind": "TypeNominal",
@@ -6237,13 +6598,14 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_S2StF",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC24characteristicPropertiesys5Int32VSS_S2StF",
+            "usr": "s:12SamplePlugin18CB4UCentralManagerC15peripheralStateys5Int32VSSF",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC15peripheralStateys5Int32VSSF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6294,6 +6656,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6350,6 +6713,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6390,6 +6754,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6442,6 +6807,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6488,6 +6854,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6516,6 +6883,7 @@
             "declAttributes": [
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6536,16 +6904,157 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManagerDidUpdateState:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManagerDidUpdateState:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE14DidUpdateStateyySo09CBCentralE0CF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "centralManagerDidUpdateState:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl",
               "RawDocComment"
             ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didConnect:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didConnectPeripheral:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_10didConnectySo09CBCentralE0C_So12CBPeripheralCtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "centralManager:didConnectPeripheral:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didDisconnectPeripheral:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didDisconnectPeripheral:error:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_23didDisconnectPeripheral5errorySo09CBCentralE0C_So12CBPeripheralCs5Error_pSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "centralManager:didDisconnectPeripheral:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didFailToConnect:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didFailToConnectPeripheral:error:",
+            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_16didFailToConnect5errorySo09CBCentralE0C_So12CBPeripheralCs5Error_pSgtF",
+            "moduleName": "SamplePlugin",
+            "isOpen": true,
+            "objc_name": "centralManager:didFailToConnectPeripheral:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6597,148 +7106,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didDiscoverPeripheral:advertisementData:RSSI:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didDiscoverPeripheral:advertisementData:RSSI:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_11didDiscover17advertisementData4rssiySo09CBCentralE0C_So12CBPeripheralCSDySSypGSo8NSNumberCtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "centralManager:didDiscoverPeripheral:advertisementData:RSSI:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "centralManager",
-            "printedName": "centralManager(_:didConnect:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBCentralManager",
-                "printedName": "CoreBluetooth.CBCentralManager",
-                "usr": "c:objc(cs)CBCentralManager"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBPeripheral",
-                "printedName": "CoreBluetooth.CBPeripheral",
-                "usr": "c:objc(cs)CBPeripheral"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didConnectPeripheral:",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_10didConnectySo09CBCentralE0C_So12CBPeripheralCtF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "objc_name": "centralManager:didConnectPeripheral:",
-            "declAttributes": [
-              "ObjC",
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "centralManager",
-            "printedName": "centralManager(_:didFailToConnect:error:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBCentralManager",
-                "printedName": "CoreBluetooth.CBCentralManager",
-                "usr": "c:objc(cs)CBCentralManager"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBPeripheral",
-                "printedName": "CoreBluetooth.CBPeripheral",
-                "usr": "c:objc(cs)CBPeripheral"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.Error?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Error",
-                    "printedName": "Swift.Error",
-                    "usr": "s:s5ErrorP"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didFailToConnectPeripheral:error:",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_16didFailToConnect5errorySo09CBCentralE0C_So12CBPeripheralCs5Error_pSgtF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "objc_name": "centralManager:didFailToConnectPeripheral:error:",
-            "declAttributes": [
-              "ObjC",
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "centralManager",
-            "printedName": "centralManager(_:didDisconnectPeripheral:error:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBCentralManager",
-                "printedName": "CoreBluetooth.CBCentralManager",
-                "usr": "c:objc(cs)CBCentralManager"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBPeripheral",
-                "printedName": "CoreBluetooth.CBPeripheral",
-                "usr": "c:objc(cs)CBPeripheral"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.Error?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Error",
-                    "printedName": "Swift.Error",
-                    "usr": "s:s5ErrorP"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)centralManager:didDisconnectPeripheral:error:",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC07centralE0_23didDisconnectPeripheral5errorySo09CBCentralE0C_So12CBPeripheralCs5Error_pSgtF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "objc_name": "centralManager:didDisconnectPeripheral:error:",
-            "declAttributes": [
-              "ObjC",
-              "AccessControl"
-            ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6773,16 +7151,18 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didDiscoverServices:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didDiscoverServices:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_19didDiscoverServicesySo12CBPeripheralC_s5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didDiscoverServices:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl",
               "RawDocComment"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6823,15 +7203,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didDiscoverCharacteristicsForService:error:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didDiscoverCharacteristicsForService:error:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_29didDiscoverCharacteristicsFor5errorySo12CBPeripheralC_So9CBServiceCs5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didDiscoverCharacteristicsForService:error:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6872,15 +7254,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didUpdateValueForCharacteristic:error:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didUpdateValueForCharacteristic:error:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_17didUpdateValueFor5errorySo12CBPeripheralC_So16CBCharacteristicCs5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didUpdateValueForCharacteristic:error:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6921,15 +7305,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didWriteValueForCharacteristic:error:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didWriteValueForCharacteristic:error:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_16didWriteValueFor5errorySo12CBPeripheralC_So16CBCharacteristicCs5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didWriteValueForCharacteristic:error:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -6970,58 +7356,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didUpdateNotificationStateForCharacteristic:error:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didUpdateNotificationStateForCharacteristic:error:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_29didUpdateNotificationStateFor5errorySo12CBPeripheralC_So16CBCharacteristicCs5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didUpdateNotificationStateForCharacteristic:error:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "peripheralDidUpdateRSSI",
-            "printedName": "peripheralDidUpdateRSSI(_:error:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "CBPeripheral",
-                "printedName": "CoreBluetooth.CBPeripheral",
-                "usr": "c:objc(cs)CBPeripheral"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.Error?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Error",
-                    "printedName": "Swift.Error",
-                    "usr": "s:s5ErrorP"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheralDidUpdateRSSI:error:",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC23peripheralDidUpdateRSSI_5errorySo12CBPeripheralC_s5Error_pSgtF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "objc_name": "peripheralDidUpdateRSSI:error:",
-            "declAttributes": [
-              "ObjC",
-              "AccessControl"
-            ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -7062,51 +7407,17 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didReadRSSI:error:",
+            "usr": "c:@CM@SamplePlugin@objc(cs)CB4UCentralManager(im)peripheral:didReadRSSI:error:",
             "mangledName": "$s12SamplePlugin18CB4UCentralManagerC10peripheral_11didReadRSSI5errorySo12CBPeripheralC_So8NSNumberCs5Error_pSgtF",
             "moduleName": "SamplePlugin",
             "isOpen": true,
             "objc_name": "peripheral:didReadRSSI:error:",
             "declAttributes": [
+              "Dynamic",
               "ObjC",
               "AccessControl"
             ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "errorToCode",
-            "printedName": "errorToCode(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Int32",
-                "printedName": "Swift.Int32",
-                "usr": "s:s5Int32V"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.Error?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Error",
-                    "printedName": "Swift.Error",
-                    "usr": "s:s5ErrorP"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:12SamplePlugin18CB4UCentralManagerC11errorToCodeys5Int32Vs5Error_pSgF",
-            "mangledName": "$s12SamplePlugin18CB4UCentralManagerC11errorToCodeys5Int32Vs5Error_pSgF",
-            "moduleName": "SamplePlugin",
-            "isOpen": true,
-            "declAttributes": [
-              "RawDocComment"
-            ],
+            "isFromExtension": true,
             "funcSelfKind": "NonMutating"
           }
         ],
@@ -7243,7 +7554,7 @@
       {
         "kind": "Function",
         "name": "cb4u_central_manager_register_handlers",
-        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+        "printedName": "cb4u_central_manager_register_handlers(_:_:_:_:_:_:_:_:_:_:_:_:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -7849,51 +8160,6 @@
           {
             "kind": "TypeFunc",
             "name": "Function",
-            "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32) -> ()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Tuple",
-                "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "UnsafeRawPointer",
-                    "printedName": "Swift.UnsafeRawPointer",
-                    "usr": "s:SV"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "UnsafePointer",
-                    "printedName": "Swift.UnsafePointer<Swift.Int8>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int8",
-                        "printedName": "Swift.Int8",
-                        "usr": "s:s4Int8V"
-                      }
-                    ],
-                    "usr": "s:SP"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int32",
-                    "printedName": "Swift.Int32",
-                    "usr": "s:s5Int32V"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "kind": "TypeFunc",
-            "name": "Function",
             "printedName": "(Swift.UnsafeRawPointer, Swift.UnsafePointer<Swift.Int8>, Swift.Int32, Swift.Int32) -> ()",
             "children": [
               {
@@ -7944,8 +8210,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)cb4u_central_manager_register_handlers:::::::::::::",
-        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCySV_A2gDtXCySV_A3gDtXCySV_A3GSPys5UInt8VGA2DtXCySV_A3gDtXCySV_A3g2DtXCySV_AgDtXCySV_Ag2DtXCtF",
+        "usr": "c:(cm)cb4u_central_manager_register_handlers::::::::::::",
+        "mangledName": "$s12SamplePlugin38cb4u_central_manager_register_handlersyySV_ySV_s5Int32VtXCySV_SPys4Int8VGAGtXCySV_AGtXCySV_AgDtXCySV_AgDtXCySV_A2gDtXCySV_A3gDtXCySV_A3GSPys5UInt8VGA2DtXCySV_A3gDtXCySV_A3g2DtXCySV_Ag2DtXCtF",
         "moduleName": "SamplePlugin",
         "declAttributes": [
           "AccessControl",
@@ -9706,394 +9972,191 @@
       "value": "\"peripheralManagerIsReady\""
     },
     {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager+DelegatePeripheral.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1652,
+      "length": 1,
+      "value": "1"
+    },
+    {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "Dictionary",
-      "offset": 313,
+      "offset": 257,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1950,
+      "offset": 1300,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1336,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1379,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1407,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1458,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1973,
+      "offset": 1879,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2376,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 2097,
+      "offset": 2536,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 2236,
+      "offset": 2675,
       "length": 1,
       "value": "1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2268,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2542,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2750,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2840,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2948,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2980,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 3112,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 3271,
-      "length": 2,
-      "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 3629,
+      "offset": 3315,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4124,
+      "kind": "StringLiteral",
+      "offset": 5857,
       "length": 2,
-      "value": "-1"
+      "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4195,
-      "length": 1,
-      "value": "0"
+      "kind": "StringLiteral",
+      "offset": 6363,
+      "length": 3,
+      "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4365,
+      "kind": "StringLiteral",
+      "offset": 6371,
       "length": 2,
-      "value": "-1"
+      "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4455,
-      "length": 1,
-      "value": "0"
+      "kind": "StringLiteral",
+      "offset": 7045,
+      "length": 3,
+      "value": "\",\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4672,
+      "kind": "StringLiteral",
+      "offset": 7053,
       "length": 2,
-      "value": "-1"
+      "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4810,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 4966,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5221,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5299,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5523,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5652,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5758,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5964,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6093,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6240,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6318,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6574,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6703,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6850,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 6956,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 7184,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 7313,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 7460,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 7552,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 7704,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "IntegerLiteral",
+      "kind": "StringLiteral",
       "offset": 7762,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 8361,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 9797,
-      "length": 3,
-      "value": "\",\""
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 9805,
+      "offset": 8767,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "StringLiteral",
-      "offset": 10467,
-      "length": 3,
-      "value": "\",\""
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 10475,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 11172,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 12165,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
-      "kind": "StringLiteral",
-      "offset": 12895,
+      "offset": 9509,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 13022,
+      "offset": 9644,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 13026,
+      "offset": 9648,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CB4UCentralManager.swift",
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 14292,
+      "offset": 4835,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5184,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 5091,
+      "offset": 5717,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 5440,
-      "length": 2,
-      "value": "-1"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5973,
+      "offset": 8887,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
       "kind": "IntegerLiteral",
-      "offset": 9111,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/teach310\/xcprojects\/samples\/SamplePlugin\/Sources\/SamplePlugin\/CoreBluetoothForUnity.swift",
-      "kind": "IntegerLiteral",
-      "offset": 9887,
+      "offset": 9663,
       "length": 1,
       "value": "0"
     },
