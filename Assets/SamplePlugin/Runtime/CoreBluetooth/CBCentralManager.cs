@@ -7,13 +7,15 @@ using System.Text;
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager
-    public class CBCentralManager : ICharacteristicNativeMethods, IPeripheralNativeMethods, IDisposable
+    public class CBCentralManager : IDisposable
     {
         bool disposed = false;
 
         SafeCB4UCentralManagerHandle handle;
         // key: peripheralId, value: CBPeripheral
         Dictionary<string, CBPeripheral> peripherals = new Dictionary<string, CBPeripheral>();
+        NativePeripheralProxy nativePeripheralProxy;
+        NativeCharacteristicProxy nativeCharacteristicProxy;
 
         CBCentralManager() { }
 
@@ -25,6 +27,8 @@ namespace CoreBluetooth
         {
             var instance = new CBCentralManager();
             instance.handle = SafeCB4UCentralManagerHandle.Create(instance);
+            instance.nativePeripheralProxy = new NativePeripheralProxy(instance.handle);
+            instance.nativeCharacteristicProxy = new NativeCharacteristicProxy(instance.handle);
             instance.centralManagerDelegate = centralManagerDelegate;
             return instance;
         }
@@ -73,7 +77,7 @@ namespace CoreBluetooth
             }
             else
             {
-                return new CBPeripheral(peripheralId, GetPeripheralName(peripheralId), this);
+                return new CBPeripheral(peripheralId, GetPeripheralName(peripheralId), nativePeripheralProxy);
             }
         }
 
@@ -151,126 +155,6 @@ namespace CoreBluetooth
 
         #endregion
 
-        void IPeripheralNativeMethods.DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
-        {
-            int result = NativeMethods.cb4u_peripheral_discover_services(
-                handle,
-                peripheral.identifier,
-                serviceUUIDs,
-                serviceUUIDs.Length
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute discover services.");
-            }
-        }
-
-        void IPeripheralNativeMethods.DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs)
-        {
-            int result = NativeMethods.cb4u_peripheral_discover_characteristics(
-                handle,
-                peripheral.identifier,
-                service.uuid,
-                characteristicUUIDs,
-                characteristicUUIDs.Length
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute discover characteristics.");
-            }
-        }
-
-        void IPeripheralNativeMethods.ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic)
-        {
-            int result = NativeMethods.cb4u_peripheral_read_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute read value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type)
-        {
-            int result = NativeMethods.cb4u_peripheral_write_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid,
-                data,
-                data.Length,
-                (int)type
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute write value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled)
-        {
-            int result = NativeMethods.cb4u_peripheral_set_notify_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid,
-                enabled
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute set notify value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.ReadRSSI(CBPeripheral peripheral)
-        {
-            int result = NativeMethods.cb4u_central_manager_peripheral_read_rssi(
-                handle,
-                peripheral.identifier
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute read RSSI.");
-            }
-        }
-
-        CBPeripheralState IPeripheralNativeMethods.GetPeripheralState(CBPeripheral peripheral)
-        {
-            var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle, peripheral.identifier);
-
-            if (stateInt < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute get peripheral state.");
-            }
-            return (CBPeripheralState)stateInt;
-        }
-
-        CBCharacteristicProperties ICharacteristicNativeMethods.GetCharacteristicProperties(CBCharacteristic characteristic)
-        {
-            var propertiesInt = NativeMethods.cb4u_central_manager_characteristic_properties(
-                handle,
-                characteristic.service.peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid
-            );
-
-            if (propertiesInt < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute get characteristic properties.");
-            }
-            return (CBCharacteristicProperties)propertiesInt;
-        }
-
         internal void OnDidUpdateState(CBManagerState state)
         {
             this.state = state;
@@ -282,7 +166,7 @@ namespace CoreBluetooth
             var peripheral = new CBPeripheral(
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
                 Marshal.PtrToStringUTF8(peripheralNamePtr),
-                this
+                nativePeripheralProxy
             );
 
             peripherals[peripheral.identifier] = peripheral;
@@ -368,8 +252,7 @@ namespace CoreBluetooth
                 return;
             }
 
-            // NOTE: get characteristic info here if needed.
-            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service, this)).ToArray();
+            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service, nativeCharacteristicProxy)).ToArray();
             peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
         }
 
