@@ -7,13 +7,16 @@ using System.Text;
 namespace CoreBluetooth
 {
     // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager
-    public class CBCentralManager : ICharacteristicNativeMethods, IPeripheralNativeMethods, IDisposable
+    public class CBCentralManager : IDisposable
     {
         bool disposed = false;
 
         SafeCB4UCentralManagerHandle handle;
         // key: peripheralId, value: CBPeripheral
         Dictionary<string, CBPeripheral> peripherals = new Dictionary<string, CBPeripheral>();
+        NativeCentralManagerProxy nativeCentralManagerProxy;
+        NativePeripheralProxy nativePeripheralProxy;
+        NativeCharacteristicProxy nativeCharacteristicProxy;
 
         CBCentralManager() { }
 
@@ -25,6 +28,9 @@ namespace CoreBluetooth
         {
             var instance = new CBCentralManager();
             instance.handle = SafeCB4UCentralManagerHandle.Create(instance);
+            instance.nativeCentralManagerProxy = new NativeCentralManagerProxy(instance.handle);
+            instance.nativePeripheralProxy = new NativePeripheralProxy(instance.handle);
+            instance.nativeCharacteristicProxy = new NativeCharacteristicProxy(instance.handle);
             instance.centralManagerDelegate = centralManagerDelegate;
             return instance;
         }
@@ -45,24 +51,16 @@ namespace CoreBluetooth
         }
 
         public CBManagerState state { get; private set; } = CBManagerState.unknown;
-        public CBCentralManagerDelegate centralManagerDelegate { get; set; }
 
-        string GetPeripheralName(string peripheralId)
+        CBCentralManagerDelegate _centralManagerDelegate;
+        public CBCentralManagerDelegate centralManagerDelegate
         {
-            var sb = new StringBuilder(256);
-            var result = NativeMethods.cb4u_central_manager_peripheral_name(
-                handle,
-                peripheralId,
-                sb,
-                sb.Capacity
-            );
-
-            if (result < 0)
+            get => _centralManagerDelegate;
+            set
             {
-                return string.Empty;
+                ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+                _centralManagerDelegate = value;
             }
-
-            return sb.ToString();
         }
 
         CBPeripheral GetOrCreatePeripheral(string peripheralId)
@@ -73,32 +71,17 @@ namespace CoreBluetooth
             }
             else
             {
-                return new CBPeripheral(peripheralId, GetPeripheralName(peripheralId), this);
+                return new CBPeripheral(peripheralId, nativePeripheralProxy.Name(peripheralId), nativePeripheralProxy);
             }
         }
 
-        public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] peripheralUUIDs)
+        public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] identifiers)
         {
-            var sbSize = peripheralUUIDs.Length * (36 + 1) + 1; // 36 is the length of UUID string, 1 is for comma.
-            var sb = new StringBuilder(sbSize);
-            var result = NativeMethods.cb4u_central_manager_retrieve_peripherals_with_identifiers(
-                handle,
-                peripheralUUIDs,
-                peripheralUUIDs.Length,
-                sb,
-                sbSize
-            );
-
-            if (result < 0)
-            {
-                return new CBPeripheral[0];
-            }
-
-            var commaSeparatedPeripheralUUIDs = sb.ToString();
-            var foundPeripherals = commaSeparatedPeripheralUUIDs
-                .Split(',')
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+            var foundPeripherals = nativeCentralManagerProxy.RetrievePeripheralsWithIdentifiers(identifiers)
                 .Select(uuid => GetOrCreatePeripheral(uuid))
                 .ToArray();
+
             foreach (var peripheral in foundPeripherals)
             {
                 peripherals[peripheral.identifier] = peripheral;
@@ -110,15 +93,24 @@ namespace CoreBluetooth
 
         public void ScanForPeripherals(string[] serviceUUIDs)
         {
-            NativeMethods.cb4u_central_manager_scan_for_peripherals(
-                handle,
-                serviceUUIDs,
-                serviceUUIDs.Length
-            );
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+            nativeCentralManagerProxy.ScanForPeripherals(serviceUUIDs);
         }
 
-        public void StopScan() => NativeMethods.cb4u_central_manager_stop_scan(handle);
-        public bool isScanning => NativeMethods.cb4u_central_manager_is_scanning(handle);
+        public void StopScan()
+        {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+            nativeCentralManagerProxy.StopScan();
+        }
+
+        public bool isScanning
+        {
+            get
+            {
+                ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+                return nativeCentralManagerProxy.IsScanning();
+            }
+        }
 
         #endregion
 
@@ -128,161 +120,55 @@ namespace CoreBluetooth
         // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1518766-connect
         public void Connect(CBPeripheral peripheral)
         {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
             if (peripheral.state != CBPeripheralState.disconnected)
             {
                 UnityEngine.Debug.LogWarning("peripheral.state is not disconnected.");
             }
 
-            var result = NativeMethods.cb4u_central_manager_connect_peripheral(handle, peripheral.identifier);
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute connect.");
-            }
+            nativeCentralManagerProxy.Connect(peripheral.identifier);
         }
 
         public void CancelPeripheralConnection(CBPeripheral peripheral)
         {
-            int result = NativeMethods.cb4u_central_manager_cancel_peripheral_connection(handle, peripheral.identifier);
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute cancel peripheral connection.");
-            }
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+            nativeCentralManagerProxy.CancelPeripheralConnection(peripheral.identifier);
         }
 
         #endregion
 
-        void IPeripheralNativeMethods.DiscoverServices(CBPeripheral peripheral, string[] serviceUUIDs)
+        CBPeripheral GetPeripheral(IntPtr peripheralIdPtr)
         {
-            int result = NativeMethods.cb4u_peripheral_discover_services(
-                handle,
-                peripheral.identifier,
-                serviceUUIDs,
-                serviceUUIDs.Length
-            );
-
-            if (result < 0)
+            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
             {
-                UnityEngine.Debug.LogError("Failed to execute discover services.");
+                UnityEngine.Debug.LogError("Peripheral not found.");
+                return null;
             }
+            return peripheral;
         }
 
-        void IPeripheralNativeMethods.DiscoverCharacteristics(CBPeripheral peripheral, CBService service, string[] characteristicUUIDs)
+        CBCharacteristic FindCharacteristic(CBPeripheral peripheral, IntPtr serviceIdPtr, IntPtr characteristicIdPtr)
         {
-            int result = NativeMethods.cb4u_peripheral_discover_characteristics(
-                handle,
-                peripheral.identifier,
-                service.uuid,
-                characteristicUUIDs,
-                characteristicUUIDs.Length
+            return peripheral.FindCharacteristic(
+                Marshal.PtrToStringUTF8(serviceIdPtr),
+                Marshal.PtrToStringUTF8(characteristicIdPtr)
             );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute discover characteristics.");
-            }
-        }
-
-        void IPeripheralNativeMethods.ReadValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic)
-        {
-            int result = NativeMethods.cb4u_peripheral_read_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute read value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.WriteValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, byte[] data, CBCharacteristicWriteType type)
-        {
-            int result = NativeMethods.cb4u_peripheral_write_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid,
-                data,
-                data.Length,
-                (int)type
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute write value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.SetNotifyValueForCharacteristic(CBPeripheral peripheral, CBCharacteristic characteristic, bool enabled)
-        {
-            int result = NativeMethods.cb4u_peripheral_set_notify_value_for_characteristic(
-                handle,
-                peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid,
-                enabled
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute set notify value for characteristic.");
-            }
-        }
-
-        void IPeripheralNativeMethods.ReadRSSI(CBPeripheral peripheral)
-        {
-            int result = NativeMethods.cb4u_central_manager_peripheral_read_rssi(
-                handle,
-                peripheral.identifier
-            );
-
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute read RSSI.");
-            }
-        }
-
-        CBPeripheralState IPeripheralNativeMethods.GetPeripheralState(CBPeripheral peripheral)
-        {
-            var stateInt = NativeMethods.cb4u_central_manager_peripheral_state(handle, peripheral.identifier);
-
-            if (stateInt < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute get peripheral state.");
-            }
-            return (CBPeripheralState)stateInt;
-        }
-
-        CBCharacteristicProperties ICharacteristicNativeMethods.GetCharacteristicProperties(CBCharacteristic characteristic)
-        {
-            var propertiesInt = NativeMethods.cb4u_central_manager_characteristic_properties(
-                handle,
-                characteristic.service.peripheral.identifier,
-                characteristic.service.uuid,
-                characteristic.uuid
-            );
-
-            if (propertiesInt < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute get characteristic properties.");
-            }
-            return (CBCharacteristicProperties)propertiesInt;
         }
 
         internal void OnDidUpdateState(CBManagerState state)
         {
+            if (disposed) return;
             this.state = state;
             centralManagerDelegate?.CentralManagerDidUpdateState(this);
         }
 
         internal void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
+            if (disposed) return;
             var peripheral = new CBPeripheral(
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
                 Marshal.PtrToStringUTF8(peripheralNamePtr),
-                this
+                nativePeripheralProxy
             );
 
             peripherals[peripheral.identifier] = peripheral;
@@ -291,45 +177,33 @@ namespace CoreBluetooth
 
         internal void OnDidConnectPeripheral(IntPtr peripheralIdPtr)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidConnectPeripheral(this, peripheral);
         }
 
         internal void OnDidFailToConnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidFailToConnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
         internal void OnDidDisconnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidDisconnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
         }
 
         internal void OnDidDiscoverServices(IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
             string commaSeparatedServiceIds = Marshal.PtrToStringUTF8(commaSeparatedServiceIdsPtr);
             if (string.IsNullOrEmpty(commaSeparatedServiceIds))
             {
@@ -341,16 +215,13 @@ namespace CoreBluetooth
             // NOTE: get service info here if needed.
             var services = serviceIds.Select(serviceId => new CBService(serviceId, peripheral)).ToArray();
             peripheral.OnDidDiscoverServices(services, CBError.CreateOrNullFromCode(errorCode));
-
         }
 
         internal void OnDidDiscoverCharacteristics(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
 
             string commaSeparatedCharacteristicIds = Marshal.PtrToStringUTF8(commaSeparatedCharacteristicIdsPtr);
             if (string.IsNullOrEmpty(commaSeparatedCharacteristicIds))
@@ -368,23 +239,17 @@ namespace CoreBluetooth
                 return;
             }
 
-            // NOTE: get characteristic info here if needed.
-            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service, this)).ToArray();
+            var characteristics = characteristicIds.Select(characteristicId => new CBCharacteristic(characteristicId, service, nativeCharacteristicProxy)).ToArray();
             peripheral.OnDidDiscoverCharacteristics(characteristics, service, CBError.CreateOrNullFromCode(errorCode));
         }
 
         internal void OnDidUpdateValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
 
-            var characteristic = peripheral.FindCharacteristic(
-                Marshal.PtrToStringUTF8(serviceIdPtr),
-                Marshal.PtrToStringUTF8(characteristicIdPtr)
-            );
+            var characteristic = FindCharacteristic(peripheral, serviceIdPtr, characteristicIdPtr);
             var valueBytes = new byte[valueLength];
             Marshal.Copy(valuePtr, valueBytes, 0, valueLength);
             characteristic.SetValue(valueBytes);
@@ -393,44 +258,27 @@ namespace CoreBluetooth
 
         internal void OnDidWriteValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
-            var characteristic = peripheral.FindCharacteristic(
-                Marshal.PtrToStringUTF8(serviceIdPtr),
-                Marshal.PtrToStringUTF8(characteristicIdPtr)
-            );
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
+            var characteristic = FindCharacteristic(peripheral, serviceIdPtr, characteristicIdPtr);
             peripheral.OnDidWriteValueForCharacteristic(characteristic, CBError.CreateOrNullFromCode(errorCode));
         }
 
         internal void OnDidUpdateNotificationStateForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-
-            var characteristic = peripheral.FindCharacteristic(
-                Marshal.PtrToStringUTF8(serviceIdPtr),
-                Marshal.PtrToStringUTF8(characteristicIdPtr)
-            );
-
+            if (disposed) return;
+            var peripheral = GetPeripheral(peripheralIdPtr);
+            if (peripheral == null) return;
+            var characteristic = FindCharacteristic(peripheral, serviceIdPtr, characteristicIdPtr);
             bool isNotifying = notificationState == 1;
             peripheral.OnDidUpdateNotificationStateForCharacteristic(characteristic, isNotifying, CBError.CreateOrNullFromCode(errorCode));
         }
 
         internal void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
         {
-            if (!peripherals.TryGetValue(Marshal.PtrToStringUTF8(peripheralIdPtr), out var peripheral))
-            {
-                UnityEngine.Debug.LogError("Peripheral not found.");
-                return;
-            }
-            peripheral.OnDidReadRSSI(rssi, CBError.CreateOrNullFromCode(errorCode));
+            if (disposed) return;
+            GetPeripheral(peripheralIdPtr)?.OnDidReadRSSI(rssi, CBError.CreateOrNullFromCode(errorCode));
         }
     }
 }
