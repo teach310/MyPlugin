@@ -14,6 +14,7 @@ namespace CoreBluetooth
         SafeCB4UCentralManagerHandle handle;
         // key: peripheralId, value: CBPeripheral
         Dictionary<string, CBPeripheral> peripherals = new Dictionary<string, CBPeripheral>();
+        NativeCentralManagerProxy nativeCentralManagerProxy;
         NativePeripheralProxy nativePeripheralProxy;
         NativeCharacteristicProxy nativeCharacteristicProxy;
 
@@ -27,6 +28,7 @@ namespace CoreBluetooth
         {
             var instance = new CBCentralManager();
             instance.handle = SafeCB4UCentralManagerHandle.Create(instance);
+            instance.nativeCentralManagerProxy = new NativeCentralManagerProxy(instance.handle);
             instance.nativePeripheralProxy = new NativePeripheralProxy(instance.handle);
             instance.nativeCharacteristicProxy = new NativeCharacteristicProxy(instance.handle);
             instance.centralManagerDelegate = centralManagerDelegate;
@@ -73,29 +75,13 @@ namespace CoreBluetooth
             }
         }
 
-        public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] peripheralUUIDs)
+        public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] identifiers)
         {
             ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
-            var sbSize = peripheralUUIDs.Length * (36 + 1) + 1; // 36 is the length of UUID string, 1 is for comma.
-            var sb = new StringBuilder(sbSize);
-            var result = NativeMethods.cb4u_central_manager_retrieve_peripherals_with_identifiers(
-                handle,
-                peripheralUUIDs,
-                peripheralUUIDs.Length,
-                sb,
-                sbSize
-            );
-
-            if (result < 0)
-            {
-                return new CBPeripheral[0];
-            }
-
-            var commaSeparatedPeripheralUUIDs = sb.ToString();
-            var foundPeripherals = commaSeparatedPeripheralUUIDs
-                .Split(',')
+            var foundPeripherals = nativeCentralManagerProxy.RetrievePeripheralsWithIdentifiers(identifiers)
                 .Select(uuid => GetOrCreatePeripheral(uuid))
                 .ToArray();
+
             foreach (var peripheral in foundPeripherals)
             {
                 peripherals[peripheral.identifier] = peripheral;
@@ -108,17 +94,13 @@ namespace CoreBluetooth
         public void ScanForPeripherals(string[] serviceUUIDs)
         {
             ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
-            NativeMethods.cb4u_central_manager_scan_for_peripherals(
-                handle,
-                serviceUUIDs,
-                serviceUUIDs.Length
-            );
+            nativeCentralManagerProxy.ScanForPeripherals(serviceUUIDs);
         }
 
         public void StopScan()
         {
             ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
-            NativeMethods.cb4u_central_manager_stop_scan(handle);
+            nativeCentralManagerProxy.StopScan();
         }
 
         public bool isScanning
@@ -126,7 +108,7 @@ namespace CoreBluetooth
             get
             {
                 ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
-                return NativeMethods.cb4u_central_manager_is_scanning(handle);
+                return nativeCentralManagerProxy.IsScanning();
             }
         }
 
@@ -144,21 +126,13 @@ namespace CoreBluetooth
                 UnityEngine.Debug.LogWarning("peripheral.state is not disconnected.");
             }
 
-            var result = NativeMethods.cb4u_central_manager_connect_peripheral(handle, peripheral.identifier);
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute connect.");
-            }
+            nativeCentralManagerProxy.Connect(peripheral.identifier);
         }
 
         public void CancelPeripheralConnection(CBPeripheral peripheral)
         {
             ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
-            int result = NativeMethods.cb4u_central_manager_cancel_peripheral_connection(handle, peripheral.identifier);
-            if (result < 0)
-            {
-                UnityEngine.Debug.LogError("Failed to execute cancel peripheral connection.");
-            }
+            nativeCentralManagerProxy.CancelPeripheralConnection(peripheral.identifier);
         }
 
         #endregion
