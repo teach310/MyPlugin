@@ -49,7 +49,17 @@ namespace CoreBluetooth
         }
 
         public CBManagerState state { get; private set; } = CBManagerState.unknown;
-        public CBCentralManagerDelegate centralManagerDelegate { get; set; }
+
+        CBCentralManagerDelegate _centralManagerDelegate;
+        public CBCentralManagerDelegate centralManagerDelegate
+        {
+            get => _centralManagerDelegate;
+            set
+            {
+                ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+                _centralManagerDelegate = value;
+            }
+        }
 
         CBPeripheral GetOrCreatePeripheral(string peripheralId)
         {
@@ -65,6 +75,7 @@ namespace CoreBluetooth
 
         public CBPeripheral[] RetrievePeripheralsWithIdentifiers(string[] peripheralUUIDs)
         {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
             var sbSize = peripheralUUIDs.Length * (36 + 1) + 1; // 36 is the length of UUID string, 1 is for comma.
             var sb = new StringBuilder(sbSize);
             var result = NativeMethods.cb4u_central_manager_retrieve_peripherals_with_identifiers(
@@ -96,6 +107,7 @@ namespace CoreBluetooth
 
         public void ScanForPeripherals(string[] serviceUUIDs)
         {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
             NativeMethods.cb4u_central_manager_scan_for_peripherals(
                 handle,
                 serviceUUIDs,
@@ -103,8 +115,20 @@ namespace CoreBluetooth
             );
         }
 
-        public void StopScan() => NativeMethods.cb4u_central_manager_stop_scan(handle);
-        public bool isScanning => NativeMethods.cb4u_central_manager_is_scanning(handle);
+        public void StopScan()
+        {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+            NativeMethods.cb4u_central_manager_stop_scan(handle);
+        }
+
+        public bool isScanning
+        {
+            get
+            {
+                ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
+                return NativeMethods.cb4u_central_manager_is_scanning(handle);
+            }
+        }
 
         #endregion
 
@@ -114,6 +138,7 @@ namespace CoreBluetooth
         // https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/1518766-connect
         public void Connect(CBPeripheral peripheral)
         {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
             if (peripheral.state != CBPeripheralState.disconnected)
             {
                 UnityEngine.Debug.LogWarning("peripheral.state is not disconnected.");
@@ -128,6 +153,7 @@ namespace CoreBluetooth
 
         public void CancelPeripheralConnection(CBPeripheral peripheral)
         {
+            ExceptionUtils.ThrowObjectDisposedExceptionIf(disposed, this);
             int result = NativeMethods.cb4u_central_manager_cancel_peripheral_connection(handle, peripheral.identifier);
             if (result < 0)
             {
@@ -157,12 +183,14 @@ namespace CoreBluetooth
 
         internal void OnDidUpdateState(CBManagerState state)
         {
+            if (disposed) return;
             this.state = state;
             centralManagerDelegate?.CentralManagerDidUpdateState(this);
         }
 
         internal void OnDidDiscoverPeripheral(IntPtr peripheralIdPtr, IntPtr peripheralNamePtr)
         {
+            if (disposed) return;
             var peripheral = new CBPeripheral(
                 Marshal.PtrToStringUTF8(peripheralIdPtr),
                 Marshal.PtrToStringUTF8(peripheralNamePtr),
@@ -175,6 +203,7 @@ namespace CoreBluetooth
 
         internal void OnDidConnectPeripheral(IntPtr peripheralIdPtr)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidConnectPeripheral(this, peripheral);
@@ -182,6 +211,7 @@ namespace CoreBluetooth
 
         internal void OnDidFailToConnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidFailToConnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
@@ -189,6 +219,7 @@ namespace CoreBluetooth
 
         internal void OnDidDisconnectPeripheral(IntPtr peripheralIdPtr, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             centralManagerDelegate?.CentralManagerDidDisconnectPeripheral(this, peripheral, CBError.CreateOrNullFromCode(errorCode));
@@ -196,6 +227,7 @@ namespace CoreBluetooth
 
         internal void OnDidDiscoverServices(IntPtr peripheralIdPtr, IntPtr commaSeparatedServiceIdsPtr, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             string commaSeparatedServiceIds = Marshal.PtrToStringUTF8(commaSeparatedServiceIdsPtr);
@@ -213,6 +245,7 @@ namespace CoreBluetooth
 
         internal void OnDidDiscoverCharacteristics(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr commaSeparatedCharacteristicIdsPtr, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
 
@@ -238,6 +271,7 @@ namespace CoreBluetooth
 
         internal void OnDidUpdateValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, IntPtr valuePtr, int valueLength, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
 
@@ -250,6 +284,7 @@ namespace CoreBluetooth
 
         internal void OnDidWriteValueForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             var characteristic = FindCharacteristic(peripheral, serviceIdPtr, characteristicIdPtr);
@@ -258,6 +293,7 @@ namespace CoreBluetooth
 
         internal void OnDidUpdateNotificationStateForCharacteristic(IntPtr peripheralIdPtr, IntPtr serviceIdPtr, IntPtr characteristicIdPtr, int notificationState, int errorCode)
         {
+            if (disposed) return;
             var peripheral = GetPeripheral(peripheralIdPtr);
             if (peripheral == null) return;
             var characteristic = FindCharacteristic(peripheral, serviceIdPtr, characteristicIdPtr);
@@ -267,6 +303,7 @@ namespace CoreBluetooth
 
         internal void OnDidReadRSSI(IntPtr peripheralIdPtr, int rssi, int errorCode)
         {
+            if (disposed) return;
             GetPeripheral(peripheralIdPtr)?.OnDidReadRSSI(rssi, CBError.CreateOrNullFromCode(errorCode));
         }
     }
